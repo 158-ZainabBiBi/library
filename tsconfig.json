@@ -1,10 +1,9 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "noImplicitAny":false,
+    "noImplicitAny": false,
     "noImplicitReturns": false,
-    "strictNullChecks":false,
+    "strictNullChecks": false,
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
@@ -21,7 +20,13 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "locationlibrary": [
+        "dist/locationlibrary/locationlibrary",
+        "dist/locationlibrary"
+      ]
+    }
   },
   "angularCompilerOptions": {
     "strictInjectionParameters": true,

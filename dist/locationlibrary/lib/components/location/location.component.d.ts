@@ -1,0 +1,72 @@
+import { OnInit, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { LocationleveltypeService } from '../locationleveltype/locationleveltype.service';
+import { LocationleveltypeComponent } from '../locationleveltype/locationleveltype.component';
+import { LocationsearchfilterComponent } from '../locationsearchfilter/locationsearchfilter.component';
+import { LocationService } from './location.service';
+import { OnFailService } from '../../services/on-fail.service';
+export declare class LocationComponent implements OnInit {
+    private locationservice;
+    private locationleveltypeservice;
+    private toastrservice;
+    private onfailservice;
+    private router;
+    locationleveltype: LocationleveltypeComponent;
+    locationsearchfilter: LocationsearchfilterComponent;
+    addlocation: LocationComponent;
+    editlocation: LocationComponent;
+    view: number;
+    iscompulsory: boolean;
+    isshowlables: boolean;
+    disabled: boolean;
+    all: boolean;
+    locationID: any;
+    locationleveltypeID: any;
+    locationparentID: any;
+    edit: EventEmitter<any>;
+    cancel: EventEmitter<any>;
+    selectedLocation: EventEmitter<any>;
+    viewLocation: EventEmitter<any>;
+    locationleveltypeLABEL: any;
+    locations: any[];
+    locationsAll: any[];
+    location: {
+        location_ID: number;
+        location_NAME: string;
+        location_CODE: string;
+        location_DESC: string;
+        locationleveltype_ID: {
+            id: any;
+        };
+        locationparent_ID: any;
+        latitude: any;
+        longitude: any;
+        altitude: any;
+        isactive: boolean;
+    };
+    search: {
+        locationleveltype_ID: any;
+        locationparent_ID: any;
+    };
+    constructor(locationservice: LocationService, locationleveltypeservice: LocationleveltypeService, toastrservice: ToastrService, onfailservice: OnFailService, router: Router);
+    ngOnInit(): void;
+    onToolbarPreparing(e: any): void;
+    add(): void;
+    update(row: any): void;
+    viewlocation(row: any): void;
+    changeLocation(location: any): void;
+    searchLocation(locationleveltype: any, locationparent: any): void;
+    refreshLocation(): void;
+    locationEdit(): void;
+    locationCancel(): void;
+    setlocations(response: any): void;
+    locationGet(): void;
+    locationGetAll(): void;
+    locationGetOne(id: any): void;
+    locationGetAdvancedSearchAll(search: any): void;
+    locationAdd(location: any): void;
+    locationUpdate(location: any): void;
+    locationleveltypeGetOne(id: any): void;
+}
+//# sourceMappingURL=location.component.d.ts.map

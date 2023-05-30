@@ -16,13 +16,12 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './pages/login/login.component';
-import { NotfoundComponent } from './pages/notfound/notfound.component';
-import { RequestOptionsService } from './services/setting.headers';
-import { HttpErrorInterceptor } from './services/http-error.interceptor';
+import { LoginComponent } from 'projects/locationlibrary/src/lib/pages/login/login.component';
+import { HttpErrorInterceptor } from 'projects/locationlibrary/src/lib/services/http-error.interceptor';
+import { RequestOptionsService } from 'projects/locationlibrary/src/lib/services/setting.headers';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, NotfoundComponent],
+  declarations: [AppComponent, LoginComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule, // required animations module

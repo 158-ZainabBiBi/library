@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "person",
+            "outputPath": "locations",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -131,6 +131,46 @@
             "production": {
               "devServerTarget": "demo:serve:production"
             }
+          }
+        }
+      }
+    },
+    "locationlibrary": {
+      "projectType": "library",
+      "root": "projects/locationlibrary",
+      "sourceRoot": "projects/locationlibrary/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/locationlibrary/tsconfig.lib.json",
+            "project": "projects/locationlibrary/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/locationlibrary/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/locationlibrary/src/test.ts",
+            "tsConfig": "projects/locationlibrary/tsconfig.spec.json",
+            "karmaConfig": "projects/locationlibrary/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/locationlibrary/tsconfig.lib.json",
+              "projects/locationlibrary/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
           }
         }
       }
