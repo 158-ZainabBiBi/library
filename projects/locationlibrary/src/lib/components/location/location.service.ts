@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { HttpCallServieService } from "projects/locationlibrary/src/lib/services/http-call-servie.service";
 import { setting } from "../../setting";
+import { HttpCallServieService } from "projects/locationlibrary/src/lib/services/http-call-service.service";
 
 @Injectable({
   providedIn: "root"

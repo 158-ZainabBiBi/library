@@ -1,19 +1,18 @@
 import * as i0 from '@angular/core';
 import { Injectable, Component, EventEmitter, ViewChild, Input, Output, ViewChildren, NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import * as i2 from '@angular/router';
 import { Router, RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { NgSelectModule } from '@ng-select/ng-select';
-import { DxMenuModule, DxRangeSelectorModule, DxPopupModule, DxChartModule, DxPieChartModule, DxVectorMapModule, DxDataGridModule, DxBulletModule, DxButtonModule, DxCheckBoxModule, DxSelectBoxModule, DxDropDownButtonModule } from 'devextreme-angular';
-import { IconPickerModule } from 'ngx-icon-picker';
 import * as i3 from 'ngx-toastr';
 import { ToastrService } from 'ngx-toastr';
+import { OnFailService as OnFailService$1 } from 'projects/locationlibrary/src/lib/services/on-fail.service';
+import { HttpCallServieService as HttpCallServieService$1 } from 'projects/locationlibrary/src/lib/services/http-call-service.service';
 import * as i1 from '@angular/http';
-import { Http } from '@angular/http';
-import { HttpCallServieService as HttpCallServieService$1 } from 'projects/locationlibrary/src/lib/services/http-call-servie.service';
-import { map } from 'rxjs/operators';
+import { Http, BaseRequestOptions, Headers } from '@angular/http';
+import { map, retry, catchError } from 'rxjs/operators';
+import { setting as setting$1 } from 'projects/locationlibrary/src/lib/setting';
+import { throwError } from 'rxjs';
 
 class LocationlibraryService {
     constructor() { }
@@ -44,70 +43,6 @@ LocationlibraryComponent.decorators = [
 LocationlibraryComponent.ctorParameters = () => [];
 
 const setting = {
-    /*
-      AppsStorePath: "http://apps.kbfood.services/#/",
-      LoginAppPath: "http://accounts.kbfood.services/#/",
-      application_ID: "LocationManagement",
-  
-      companyName: 'Compuwiz Technologies',
-      companyShortName: 'CWizTech',
-      logo: 'http://kbfood.services/design/images/logo.png',
-      logo1white: 'http://kbfood.services/design/images/logo-short.png',
-      loginBanner1: 'http://kbfood.services/design/images/intro-back.jpeg',
-      icon: 'http://kbfood.services/design/images/favicon.ico',
-  
-  
-  
-      AppsStorePath: "http://apps.magnatechhub.com/#/",
-      LoginAppPath: "http://accounts.magnarouting.com/#/",
-      application_ID: "LocationManagement",
-  
-      companyName: 'Compuwiz Technologies',
-      companyShortName: 'CWizTech',
-      logo: 'http://accounts.magnarouting.com/assets/images/applications/logo.png',
-      logo1white: 'http://accounts.magnarouting.com/assets/images/applications/logo.png',
-      loginBanner1: 'http://accounts.magnarouting.com/assets/images/applications/logo.png',
-      icon: 'http://accounts.magnarouting.com/assets/images/applications/favicon.ico',
-  
-   AppsStorePath: "http://apps.cwiztech.com/#/",
-      LoginAppPath: "http://accounts.cwiztech.com/#/",
-      application_ID: "LocationManagement",
-  
-      companyName: 'Compuwiz Technologies',
-      companyShortName: 'CWizTech',
-      logo: 'http://cwiztech.com/design/images/logo.png',
-      logo1white: 'http://cwiztech.com/design/images/logo-short.png',
-      loginBanner1: 'http://cwiztech.com/design/images/intro-back.jpeg',
-      icon: 'http://cwiztech.com/design/images/favicon.ico',
-  
-      
-  
-  
-      AppsStorePath: "http://sms.jca.ac.uk/apps/#/",
-      LoginAppPath: "http://sms.jca.ac.uk/oauthlogin2/#/",
-      application_ID: "LocationManagement",
-  
-      companyName: 'JCA - London Fashion Academy',
-      companyShortName: 'JCA',
-      logo: 'http://sms.jca.ac.uk/jcadesign/images/logo.png',
-      logo1white: 'http://sms.jca.ac.uk/jcadesign/images/logo-short.png',
-      loginBanner1: 'http://sms.jca.ac.uk/jcadesign/images/intro-back.png',
-      icon: 'http://sms.jca.ac.uk/jcadesign/images/favicon.ico',
-  
-  
-  
-      AppsStorePath: "http://uog.apps.cwiztech.com/#/",
-      LoginAppPath: "http://uog.accounts.cwiztech.com/#/",
-      application_ID: "LocationManagementDev",
-  
-      companyName: 'University of Gujrat',
-      companyShortName: 'UOG',
-      logo: 'https://uog.edu.pk/uog/upload/events/logo_e.jpg',
-      logo1white: 'https://uog.edu.pk/uog/upload/events/logo_e.jpg',
-      loginBanner1: 'http://cwiztech.com/design/images/intro-back.jpeg',
-      icon: 'http://cwiztech.com/design/images/favicon.ico',
-  
-    */
     AppsStorePath: "http://apps.kitaas.edu.pk/#/",
     LoginAppPath: "http://accounts.kitaas.edu.pk/#/",
     application_ID: "LocationManagementDev",
@@ -140,7 +75,7 @@ class LoginService {
     }
     saveDetail(user) {
         if (user) {
-            localStorage.setItem(setting.application_ID, JSON.stringify(user));
+            localStorage.setItem(setting$1.application_ID, JSON.stringify(user));
             return true;
         }
         else {
@@ -152,18 +87,18 @@ class LoginService {
         this.authToken = token;
     }
     loaddetail() {
-        const getUser = localStorage.getItem(setting.application_ID);
+        const getUser = localStorage.getItem(setting$1.application_ID);
         this.user = JSON.parse(getUser);
         return this.user;
     }
     logout() {
-        localStorage.removeItem(setting.application_ID);
+        localStorage.removeItem(setting$1.application_ID);
         localStorage.removeItem("access_token");
-        window.location.assign(setting.LoginAppPath + "logout?application_ID=" + setting.application_ID);
+        window.location.assign(setting$1.LoginAppPath + "logout?application_ID=" + setting$1.application_ID);
         return true;
     }
     logged() {
-        const getUser = localStorage.getItem(setting.application_ID);
+        const getUser = localStorage.getItem(setting$1.application_ID);
         const _application_name_access_token_ = localStorage.getItem("access_token");
         if (getUser && _application_name_access_token_) {
             return true;
@@ -183,76 +118,6 @@ LoginService.ctorParameters = () => [
     { type: Http },
     { type: Router },
     { type: ToastrService }
-];
-
-class OnFailService {
-    constructor(_toaster, _loginService) {
-        this._toaster = _toaster;
-        this._loginService = _loginService;
-    }
-    onFail(ifFail) {
-        if (ifFail.error == "invalid_token") {
-            this._toaster.warning("Internal session expired. Logged in again ", "Logged out");
-            this._loginService.logout();
-            return;
-        }
-        if (ifFail.status == 0) {
-            this._toaster.error("Connection timed out", "Error");
-            return;
-        }
-        if (ifFail.status == 404) {
-            this._toaster.error("unknown error occured", "Error");
-            return;
-        }
-        if (ifFail.hasOwnProperty("_body")) {
-            let body = JSON.parse(ifFail._body);
-            var fail = {};
-            if (!ifFail) {
-                this._toaster.error("unknown error occured", "Error");
-                return;
-            }
-            else if (!ifFail._body) {
-                this._toaster.error("unknown error occured", "Error");
-                return;
-            }
-            if (ifFail.hasOwnProperty("_body")) {
-                if (body.status == 400) {
-                    this._toaster.error("unknown error occured", "Error");
-                    return;
-                }
-                else if (body.error == "invalid_token") {
-                    this._toaster.warning("Internal session expired. Logged in again ", "Logged out");
-                    this._loginService.logout();
-                    return;
-                }
-                else {
-                    this._toaster.error("unknown error occured", "Error");
-                    return;
-                }
-            }
-            else {
-                this._toaster.error("Status: " + ifFail.status + " Error: " + body.error + " Message: " + body.error_description, "Error");
-            }
-        }
-        else if (ifFail.hasOwnProperty("message")) {
-            this._toaster.warning("Message", " " + ifFail.message);
-            return;
-        }
-        else {
-            this._toaster.error("check your internet connection", "Error");
-            return;
-        }
-    }
-}
-OnFailService.ɵprov = i0.ɵɵdefineInjectable({ factory: function OnFailService_Factory() { return new OnFailService(i0.ɵɵinject(i3.ToastrService), i0.ɵɵinject(LoginService)); }, token: OnFailService, providedIn: "root" });
-OnFailService.decorators = [
-    { type: Injectable, args: [{
-                providedIn: 'root'
-            },] }
-];
-OnFailService.ctorParameters = () => [
-    { type: ToastrService },
-    { type: LoginService }
 ];
 
 class HttpCallServieService {
@@ -787,7 +652,7 @@ LocationComponent.ctorParameters = () => [
     { type: LocationService },
     { type: LocationleveltypeService },
     { type: ToastrService },
-    { type: OnFailService },
+    { type: OnFailService$1 },
     { type: Router }
 ];
 LocationComponent.propDecorators = {
@@ -902,7 +767,7 @@ LocationsearchfilterComponent.decorators = [
 LocationsearchfilterComponent.ctorParameters = () => [
     { type: LocationleveltypeService },
     { type: ToastrService },
-    { type: OnFailService }
+    { type: OnFailService$1 }
 ];
 LocationsearchfilterComponent.propDecorators = {
     locations: [{ type: ViewChildren, args: [LocationComponent,] }],
@@ -968,7 +833,7 @@ LocationleveltypeComponent.decorators = [
 LocationleveltypeComponent.ctorParameters = () => [
     { type: LocationleveltypeService },
     { type: ToastrService },
-    { type: OnFailService }
+    { type: OnFailService$1 }
 ];
 LocationleveltypeComponent.propDecorators = {
     iscompulsory: [{ type: Input }],
@@ -988,27 +853,300 @@ LocationlibraryModule.decorators = [
                 imports: [
                     RouterModule,
                     HttpClientModule,
-                    FormsModule,
-                    NgSelectModule,
                     CommonModule,
-                    DxMenuModule,
-                    DxRangeSelectorModule,
-                    DxPopupModule,
-                    DxChartModule,
-                    DxPieChartModule,
-                    DxVectorMapModule,
-                    DxDataGridModule,
-                    DxBulletModule,
-                    DxButtonModule,
-                    DxCheckBoxModule,
-                    DxSelectBoxModule,
-                    DxDropDownButtonModule,
-                    IconPickerModule,
                 ],
-                exports: [LocationlibraryComponent]
+                providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy }],
+                exports: [LocationlibraryComponent, LocationComponent, LocationleveltypeComponent, LocationsearchfilterComponent]
             },] }
 ];
 LocationlibraryModule.ctorParameters = () => [];
+
+class GetaddressService {
+    constructor(_HttpCallServieService_) {
+        this._HttpCallServieService_ = _HttpCallServieService_;
+    }
+    getByPostcode(postcode) {
+        var postData = {
+            service_NAME: "GETADDRESS",
+            request_TYPE: "GET",
+            request_URI: "find/" + postcode + "?api-key=V4QHzniNakGufrLJgB3ROw29270&expand=true",
+            request_BODY: ""
+        };
+        return this._HttpCallServieService_.api(postData);
+    }
+}
+GetaddressService.ɵprov = i0.ɵɵdefineInjectable({ factory: function GetaddressService_Factory() { return new GetaddressService(i0.ɵɵinject(HttpCallServieService)); }, token: GetaddressService, providedIn: "root" });
+GetaddressService.decorators = [
+    { type: Injectable, args: [{
+                providedIn: 'root'
+            },] }
+];
+GetaddressService.ctorParameters = () => [
+    { type: HttpCallServieService }
+];
+
+class HttpErrorInterceptor {
+    intercept(request, next) {
+        return next.handle(request).pipe(retry(1), catchError((error) => {
+            let errorMessage = '';
+            if (error.error instanceof ErrorEvent) {
+                // client-side error
+                errorMessage = `Error: ${error.error.message}`;
+            }
+            else {
+                // server-side error
+                errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+            }
+            return throwError(errorMessage);
+        }));
+    }
+}
+
+class LookupService {
+    constructor(_HttpCallServieService_) {
+        this._HttpCallServieService_ = _HttpCallServieService_;
+    }
+    get() {
+        var postData = {
+            service_NAME: setting.service_NAME,
+            request_TYPE: "GET",
+            request_URI: "lookup",
+            request_BODY: ""
+        };
+        return this._HttpCallServieService_.api(postData);
+    }
+    getAll() {
+        var postData = {
+            service_NAME: setting.service_NAME,
+            request_TYPE: "GET",
+            request_URI: "lookup/all",
+            request_BODY: ""
+        };
+        return this._HttpCallServieService_.api(postData);
+    }
+    getOne(id) {
+        var postData = {
+            service_NAME: setting.service_NAME,
+            request_TYPE: "GET",
+            request_URI: "lookup/" + id,
+            request_BODY: ""
+        };
+        return this._HttpCallServieService_.api(postData);
+    }
+    add(data) {
+        var postData = {
+            service_NAME: setting.service_NAME,
+            request_TYPE: "POST",
+            request_URI: "lookup",
+            request_BODY: JSON.stringify(data)
+        };
+        return this._HttpCallServieService_.api(postData);
+    }
+    update(data, id) {
+        var postData = {
+            service_NAME: setting.service_NAME,
+            request_TYPE: "PUT",
+            request_URI: "lookup/" + id,
+            request_BODY: JSON.stringify(data)
+        };
+        return this._HttpCallServieService_.api(postData);
+    }
+    delete(id) {
+        var postData = {
+            service_NAME: setting.service_NAME,
+            request_TYPE: "DELETE",
+            request_URI: "lookup/" + id,
+            request_BODY: ""
+        };
+        return this._HttpCallServieService_.api(postData);
+    }
+    search(data) {
+        var postData = {
+            service_NAME: setting.service_NAME,
+            request_TYPE: "POST",
+            request_URI: "lookup/search",
+            request_BODY: JSON.stringify(data)
+        };
+        return this._HttpCallServieService_.api(postData);
+    }
+    searchAll(data) {
+        var postData = {
+            service_NAME: setting.service_NAME,
+            request_TYPE: "POST",
+            request_URI: "lookup/search/all",
+            request_BODY: JSON.stringify(data)
+        };
+        return this._HttpCallServieService_.api(postData);
+    }
+    advancedSearch(data) {
+        var postData = {
+            service_NAME: setting.service_NAME,
+            request_TYPE: "POST",
+            request_URI: "lookup/advancedsearch",
+            request_BODY: JSON.stringify(data)
+        };
+        return this._HttpCallServieService_.api(postData);
+    }
+    advancedSearchAll(data) {
+        var postData = {
+            service_NAME: setting.service_NAME,
+            request_TYPE: "POST",
+            request_URI: "lookup/advancedsearch/all",
+            request_BODY: JSON.stringify(data)
+        };
+        return this._HttpCallServieService_.api(postData);
+    }
+    lookup(data) {
+        var postData = {
+            service_NAME: setting.service_NAME,
+            request_TYPE: "POST",
+            request_URI: "lookup/entity",
+            request_BODY: JSON.stringify({ entityname: data })
+        };
+        return this._HttpCallServieService_.api(postData);
+    }
+    entityList() {
+        var postData = {
+            service_NAME: setting.service_NAME,
+            request_TYPE: "GET",
+            request_URI: "lookup/entitylist",
+            request_BODY: ""
+        };
+        return this._HttpCallServieService_.api(postData);
+    }
+}
+LookupService.ɵprov = i0.ɵɵdefineInjectable({ factory: function LookupService_Factory() { return new LookupService(i0.ɵɵinject(HttpCallServieService)); }, token: LookupService, providedIn: "root" });
+LookupService.decorators = [
+    { type: Injectable, args: [{
+                providedIn: "root"
+            },] }
+];
+LookupService.ctorParameters = () => [
+    { type: HttpCallServieService }
+];
+
+class OnFailService {
+    constructor(_toaster, _loginService) {
+        this._toaster = _toaster;
+        this._loginService = _loginService;
+    }
+    onFail(ifFail) {
+        if (ifFail.error == "invalid_token") {
+            this._toaster.warning("Internal session expired. Logged in again ", "Logged out");
+            this._loginService.logout();
+            return;
+        }
+        if (ifFail.status == 0) {
+            this._toaster.error("Connection timed out", "Error");
+            return;
+        }
+        if (ifFail.status == 404) {
+            this._toaster.error("unknown error occured", "Error");
+            return;
+        }
+        if (ifFail.hasOwnProperty("_body")) {
+            let body = JSON.parse(ifFail._body);
+            var fail = {};
+            if (!ifFail) {
+                this._toaster.error("unknown error occured", "Error");
+                return;
+            }
+            else if (!ifFail._body) {
+                this._toaster.error("unknown error occured", "Error");
+                return;
+            }
+            if (ifFail.hasOwnProperty("_body")) {
+                if (body.status == 400) {
+                    this._toaster.error("unknown error occured", "Error");
+                    return;
+                }
+                else if (body.error == "invalid_token") {
+                    this._toaster.warning("Internal session expired. Logged in again ", "Logged out");
+                    this._loginService.logout();
+                    return;
+                }
+                else {
+                    this._toaster.error("unknown error occured", "Error");
+                    return;
+                }
+            }
+            else {
+                this._toaster.error("Status: " + ifFail.status + " Error: " + body.error + " Message: " + body.error_description, "Error");
+            }
+        }
+        else if (ifFail.hasOwnProperty("message")) {
+            this._toaster.warning("Message", " " + ifFail.message);
+            return;
+        }
+        else {
+            this._toaster.error("check your internet connection", "Error");
+            return;
+        }
+    }
+}
+OnFailService.ɵprov = i0.ɵɵdefineInjectable({ factory: function OnFailService_Factory() { return new OnFailService(i0.ɵɵinject(i3.ToastrService), i0.ɵɵinject(LoginService)); }, token: OnFailService, providedIn: "root" });
+OnFailService.decorators = [
+    { type: Injectable, args: [{
+                providedIn: 'root'
+            },] }
+];
+OnFailService.ctorParameters = () => [
+    { type: ToastrService },
+    { type: LoginService }
+];
+
+class RequestOptionsService extends BaseRequestOptions {
+    constructor() {
+        super();
+        this.headers.set('Content-Type', 'application/json');
+        this.headers.set("grant_type", "password");
+    }
+    merge(options) {
+        const newOptions = super.merge(options);
+        if (options.url) {
+            if (options.url.search("/USERLOGIN/") !== -1) {
+                var token = JSON.parse(localStorage.getItem(setting$1.application_ID)).basic_Token_;
+            }
+            else {
+                var token = JSON.parse(localStorage.getItem(setting$1.application_ID)).access_token;
+            }
+            newOptions.headers.set('authorization', `bearer ${token}`);
+            return newOptions;
+        }
+        else {
+            newOptions.headers.set('authorization', `bearer ${JSON.parse(localStorage.getItem(setting$1.application_ID)).access_token}`);
+            return newOptions;
+        }
+    }
+}
+
+class SidebarService {
+    constructor(http, loginService) {
+        this.http = http;
+        this.loginService = loginService;
+        this.LoggedUserId = this.loginService.loaddetail();
+        this.BaseUrl = this.loginService.loaddetail().oauthservice_PATH;
+    }
+    userprivileges() {
+        return this.http.post(this.BaseUrl + "login/userprivileges", { application_ID: this.loginService.loaddetail().application_ID }, {
+            headers: new Headers({
+                "Content-Type": "application/json",
+                grant_type: "password",
+                authorization: "bearer " + this.loginService.loaddetail().basic_Token_
+            })
+        }).pipe(map(res => res.json()));
+    }
+}
+SidebarService.ɵprov = i0.ɵɵdefineInjectable({ factory: function SidebarService_Factory() { return new SidebarService(i0.ɵɵinject(i1.Http), i0.ɵɵinject(LoginService)); }, token: SidebarService, providedIn: "root" });
+SidebarService.decorators = [
+    { type: Injectable, args: [{
+                providedIn: "root"
+            },] }
+];
+SidebarService.ctorParameters = () => [
+    { type: Http },
+    { type: LoginService }
+];
 
 /*
  * Public API Surface of locationlibrary
@@ -1018,5 +1156,5 @@ LocationlibraryModule.ctorParameters = () => [];
  * Generated bundle index. Do not edit.
  */
 
-export { LocationlibraryComponent, LocationlibraryModule, LocationlibraryService, LocationComponent as ɵa, LocationService as ɵb, LocationleveltypeService as ɵc, OnFailService as ɵd, LoginService as ɵe, LocationleveltypeComponent as ɵf, LocationsearchfilterComponent as ɵg };
+export { GetaddressService, HttpCallServieService, HttpErrorInterceptor, LocationComponent, LocationService, LocationleveltypeComponent, LocationleveltypeService, LocationlibraryComponent, LocationlibraryModule, LocationlibraryService, LocationsearchfilterComponent, LoginService, LookupService, OnFailService, RequestOptionsService, SidebarService };
 //# sourceMappingURL=locationlibrary.js.map

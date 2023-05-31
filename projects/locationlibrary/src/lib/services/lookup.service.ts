@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 
 import { setting } from "../setting";
-import { HttpCallServieService } from "../services/http-call-servie.service";
+import { HttpCallServieService } from "./http-call-service.service";
 
 @Injectable({
   providedIn: "root"

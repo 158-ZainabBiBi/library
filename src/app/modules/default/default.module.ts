@@ -12,7 +12,6 @@ import { DefaultRoutingModule } from './default-routing.module';
     DefaultRoutingModule,
     RouterModule,
     HttpClientModule,
-    FormsModule,
     CommonModule
   ],
   declarations: [

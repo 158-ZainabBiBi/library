@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
@@ -25,30 +25,20 @@ import { LocationsearchfilterComponent } from './components/locationsearchfilter
 import { LocationComponent } from './components/location/location.component';
 import { LocationleveltypeComponent } from './components/locationleveltype/locationleveltype.component';
 
+import { OnFailService } from './services/on-fail.service';
+import { HttpCallServieService } from './services/http-call-service.service';
+import { setting } from './setting';
+
 @NgModule({
 
   declarations: [LocationlibraryComponent, LocationComponent, LocationleveltypeComponent, LocationsearchfilterComponent],
   imports: [
     RouterModule,
     HttpClientModule,
-    FormsModule,
-    NgSelectModule,
     CommonModule,
-    DxMenuModule,
-    DxRangeSelectorModule,
-    DxPopupModule,
-    DxChartModule,
-    DxPieChartModule,
-    DxVectorMapModule,
-    DxDataGridModule,
-    DxBulletModule,
-    DxButtonModule,
-    DxCheckBoxModule,
-    DxSelectBoxModule,
-    DxDropDownButtonModule,
-    IconPickerModule,
   ],
-  exports: [LocationlibraryComponent]
+  providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy }],
+  exports: [LocationlibraryComponent, LocationComponent, LocationleveltypeComponent, LocationsearchfilterComponent]
 })
 export class LocationlibraryModule {
   constructor() { }
@@ -56,7 +46,3 @@ export class LocationlibraryModule {
   ngOnInit(): void {
   }
 }
-
-
-
-

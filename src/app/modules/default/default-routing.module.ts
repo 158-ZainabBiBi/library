@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { DefaultComponent } from './default.component';
-import { LoginComponent } from 'projects/locationlibrary/src/lib/pages/login/login.component';
+import { LoginComponent } from 'src/app/pages/login/login.component';
 
 const routes: Routes = [{
   path: '', component: DefaultComponent,

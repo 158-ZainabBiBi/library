@@ -1,4 +1,4 @@
-import { HttpCallServieService } from "projects/locationlibrary/src/lib/services/http-call-servie.service";
+import { HttpCallServieService } from "projects/locationlibrary/src/lib/services/http-call-service.service";
 export declare class LocationleveltypeService {
     private _HttpCallServieService_;
     constructor(_HttpCallServieService_: HttpCallServieService);

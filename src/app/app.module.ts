@@ -16,9 +16,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from 'projects/locationlibrary/src/lib/pages/login/login.component';
-import { HttpErrorInterceptor } from 'projects/locationlibrary/src/lib/services/http-error.interceptor';
-import { RequestOptionsService } from 'projects/locationlibrary/src/lib/services/setting.headers';
+import { LoginComponent } from './pages/login/login.component';
+import { HttpErrorInterceptor, RequestOptionsService } from 'locationlibrary';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent],

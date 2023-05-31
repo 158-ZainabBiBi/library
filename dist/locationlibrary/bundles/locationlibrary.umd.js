@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@angular/router'), require('@angular/forms'), require('@angular/common/http'), require('@ng-select/ng-select'), require('devextreme-angular'), require('ngx-icon-picker'), require('ngx-toastr'), require('@angular/http'), require('projects/locationlibrary/src/lib/services/http-call-servie.service'), require('rxjs/operators')) :
-    typeof define === 'function' && define.amd ? define('locationlibrary', ['exports', '@angular/core', '@angular/common', '@angular/router', '@angular/forms', '@angular/common/http', '@ng-select/ng-select', 'devextreme-angular', 'ngx-icon-picker', 'ngx-toastr', '@angular/http', 'projects/locationlibrary/src/lib/services/http-call-servie.service', 'rxjs/operators'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.locationlibrary = {}, global.ng.core, global.ng.common, global.ng.router, global.ng.forms, global.ng.common.http, global.ngSelect, global.devextremeAngular, global.ngxIconPicker, global.i3, global.ng.http, global.httpCallServie_service, global.rxjs.operators));
-})(this, (function (exports, i0, common, i2, forms, http, ngSelect, devextremeAngular, ngxIconPicker, i3, i1, httpCallServie_service, operators) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@angular/router'), require('@angular/common/http'), require('ngx-toastr'), require('projects/locationlibrary/src/lib/services/on-fail.service'), require('projects/locationlibrary/src/lib/services/http-call-service.service'), require('@angular/http'), require('rxjs/operators'), require('projects/locationlibrary/src/lib/setting'), require('rxjs')) :
+    typeof define === 'function' && define.amd ? define('locationlibrary', ['exports', '@angular/core', '@angular/common', '@angular/router', '@angular/common/http', 'ngx-toastr', 'projects/locationlibrary/src/lib/services/on-fail.service', 'projects/locationlibrary/src/lib/services/http-call-service.service', '@angular/http', 'rxjs/operators', 'projects/locationlibrary/src/lib/setting', 'rxjs'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.locationlibrary = {}, global.ng.core, global.ng.common, global.ng.router, global.ng.common.http, global.i3, global.onFailService, global.httpCallService, global.ng.http, global.rxjs.operators, global.setting, global.rxjs));
+})(this, (function (exports, i0, common, i2, http, i3, onFail_service, httpCallService_service, i1, operators, setting$1, rxjs) { 'use strict';
 
     function _interopNamespace(e) {
         if (e && e.__esModule) return e;
@@ -56,70 +56,6 @@
     LocationlibraryComponent.ctorParameters = function () { return []; };
 
     var setting = {
-        /*
-          AppsStorePath: "http://apps.kbfood.services/#/",
-          LoginAppPath: "http://accounts.kbfood.services/#/",
-          application_ID: "LocationManagement",
-      
-          companyName: 'Compuwiz Technologies',
-          companyShortName: 'CWizTech',
-          logo: 'http://kbfood.services/design/images/logo.png',
-          logo1white: 'http://kbfood.services/design/images/logo-short.png',
-          loginBanner1: 'http://kbfood.services/design/images/intro-back.jpeg',
-          icon: 'http://kbfood.services/design/images/favicon.ico',
-      
-      
-      
-          AppsStorePath: "http://apps.magnatechhub.com/#/",
-          LoginAppPath: "http://accounts.magnarouting.com/#/",
-          application_ID: "LocationManagement",
-      
-          companyName: 'Compuwiz Technologies',
-          companyShortName: 'CWizTech',
-          logo: 'http://accounts.magnarouting.com/assets/images/applications/logo.png',
-          logo1white: 'http://accounts.magnarouting.com/assets/images/applications/logo.png',
-          loginBanner1: 'http://accounts.magnarouting.com/assets/images/applications/logo.png',
-          icon: 'http://accounts.magnarouting.com/assets/images/applications/favicon.ico',
-      
-       AppsStorePath: "http://apps.cwiztech.com/#/",
-          LoginAppPath: "http://accounts.cwiztech.com/#/",
-          application_ID: "LocationManagement",
-      
-          companyName: 'Compuwiz Technologies',
-          companyShortName: 'CWizTech',
-          logo: 'http://cwiztech.com/design/images/logo.png',
-          logo1white: 'http://cwiztech.com/design/images/logo-short.png',
-          loginBanner1: 'http://cwiztech.com/design/images/intro-back.jpeg',
-          icon: 'http://cwiztech.com/design/images/favicon.ico',
-      
-          
-      
-      
-          AppsStorePath: "http://sms.jca.ac.uk/apps/#/",
-          LoginAppPath: "http://sms.jca.ac.uk/oauthlogin2/#/",
-          application_ID: "LocationManagement",
-      
-          companyName: 'JCA - London Fashion Academy',
-          companyShortName: 'JCA',
-          logo: 'http://sms.jca.ac.uk/jcadesign/images/logo.png',
-          logo1white: 'http://sms.jca.ac.uk/jcadesign/images/logo-short.png',
-          loginBanner1: 'http://sms.jca.ac.uk/jcadesign/images/intro-back.png',
-          icon: 'http://sms.jca.ac.uk/jcadesign/images/favicon.ico',
-      
-      
-      
-          AppsStorePath: "http://uog.apps.cwiztech.com/#/",
-          LoginAppPath: "http://uog.accounts.cwiztech.com/#/",
-          application_ID: "LocationManagementDev",
-      
-          companyName: 'University of Gujrat',
-          companyShortName: 'UOG',
-          logo: 'https://uog.edu.pk/uog/upload/events/logo_e.jpg',
-          logo1white: 'https://uog.edu.pk/uog/upload/events/logo_e.jpg',
-          loginBanner1: 'http://cwiztech.com/design/images/intro-back.jpeg',
-          icon: 'http://cwiztech.com/design/images/favicon.ico',
-      
-        */
         AppsStorePath: "http://apps.kitaas.edu.pk/#/",
         LoginAppPath: "http://accounts.kitaas.edu.pk/#/",
         application_ID: "LocationManagementDev",
@@ -152,7 +88,7 @@
         };
         LoginService.prototype.saveDetail = function (user) {
             if (user) {
-                localStorage.setItem(setting.application_ID, JSON.stringify(user));
+                localStorage.setItem(setting$1.setting.application_ID, JSON.stringify(user));
                 return true;
             }
             else {
@@ -164,18 +100,18 @@
             this.authToken = token;
         };
         LoginService.prototype.loaddetail = function () {
-            var getUser = localStorage.getItem(setting.application_ID);
+            var getUser = localStorage.getItem(setting$1.setting.application_ID);
             this.user = JSON.parse(getUser);
             return this.user;
         };
         LoginService.prototype.logout = function () {
-            localStorage.removeItem(setting.application_ID);
+            localStorage.removeItem(setting$1.setting.application_ID);
             localStorage.removeItem("access_token");
-            window.location.assign(setting.LoginAppPath + "logout?application_ID=" + setting.application_ID);
+            window.location.assign(setting$1.setting.LoginAppPath + "logout?application_ID=" + setting$1.setting.application_ID);
             return true;
         };
         LoginService.prototype.logged = function () {
-            var getUser = localStorage.getItem(setting.application_ID);
+            var getUser = localStorage.getItem(setting$1.setting.application_ID);
             var _application_name_access_token_ = localStorage.getItem("access_token");
             if (getUser && _application_name_access_token_) {
                 return true;
@@ -196,77 +132,6 @@
         { type: i1.Http },
         { type: i2.Router },
         { type: i3.ToastrService }
-    ]; };
-
-    var OnFailService = /** @class */ (function () {
-        function OnFailService(_toaster, _loginService) {
-            this._toaster = _toaster;
-            this._loginService = _loginService;
-        }
-        OnFailService.prototype.onFail = function (ifFail) {
-            if (ifFail.error == "invalid_token") {
-                this._toaster.warning("Internal session expired. Logged in again ", "Logged out");
-                this._loginService.logout();
-                return;
-            }
-            if (ifFail.status == 0) {
-                this._toaster.error("Connection timed out", "Error");
-                return;
-            }
-            if (ifFail.status == 404) {
-                this._toaster.error("unknown error occured", "Error");
-                return;
-            }
-            if (ifFail.hasOwnProperty("_body")) {
-                var body = JSON.parse(ifFail._body);
-                var fail = {};
-                if (!ifFail) {
-                    this._toaster.error("unknown error occured", "Error");
-                    return;
-                }
-                else if (!ifFail._body) {
-                    this._toaster.error("unknown error occured", "Error");
-                    return;
-                }
-                if (ifFail.hasOwnProperty("_body")) {
-                    if (body.status == 400) {
-                        this._toaster.error("unknown error occured", "Error");
-                        return;
-                    }
-                    else if (body.error == "invalid_token") {
-                        this._toaster.warning("Internal session expired. Logged in again ", "Logged out");
-                        this._loginService.logout();
-                        return;
-                    }
-                    else {
-                        this._toaster.error("unknown error occured", "Error");
-                        return;
-                    }
-                }
-                else {
-                    this._toaster.error("Status: " + ifFail.status + " Error: " + body.error + " Message: " + body.error_description, "Error");
-                }
-            }
-            else if (ifFail.hasOwnProperty("message")) {
-                this._toaster.warning("Message", " " + ifFail.message);
-                return;
-            }
-            else {
-                this._toaster.error("check your internet connection", "Error");
-                return;
-            }
-        };
-        return OnFailService;
-    }());
-    OnFailService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function OnFailService_Factory() { return new OnFailService(i0__namespace.ɵɵinject(i3__namespace.ToastrService), i0__namespace.ɵɵinject(LoginService)); }, token: OnFailService, providedIn: "root" });
-    OnFailService.decorators = [
-        { type: i0.Injectable, args: [{
-                    providedIn: 'root'
-                },] }
-    ];
-    OnFailService.ctorParameters = function () { return [
-        { type: i3.ToastrService },
-        { type: LoginService }
     ]; };
 
     var HttpCallServieService = /** @class */ (function () {
@@ -413,7 +278,7 @@
                 },] }
     ];
     LocationleveltypeService.ctorParameters = function () { return [
-        { type: httpCallServie_service.HttpCallServieService }
+        { type: httpCallService_service.HttpCallServieService }
     ]; };
 
     var LocationService = /** @class */ (function () {
@@ -535,7 +400,7 @@
                 },] }
     ];
     LocationService.ctorParameters = function () { return [
-        { type: httpCallServie_service.HttpCallServieService }
+        { type: httpCallService_service.HttpCallServieService }
     ]; };
 
     var LocationComponent = /** @class */ (function () {
@@ -812,7 +677,7 @@
         { type: LocationService },
         { type: LocationleveltypeService },
         { type: i3.ToastrService },
-        { type: OnFailService },
+        { type: onFail_service.OnFailService },
         { type: i2.Router }
     ]; };
     LocationComponent.propDecorators = {
@@ -932,7 +797,7 @@
     LocationsearchfilterComponent.ctorParameters = function () { return [
         { type: LocationleveltypeService },
         { type: i3.ToastrService },
-        { type: OnFailService }
+        { type: onFail_service.OnFailService }
     ]; };
     LocationsearchfilterComponent.propDecorators = {
         locations: [{ type: i0.ViewChildren, args: [LocationComponent,] }],
@@ -1000,7 +865,7 @@
     LocationleveltypeComponent.ctorParameters = function () { return [
         { type: LocationleveltypeService },
         { type: i3.ToastrService },
-        { type: OnFailService }
+        { type: onFail_service.OnFailService }
     ]; };
     LocationleveltypeComponent.propDecorators = {
         iscompulsory: [{ type: i0.Input }],
@@ -1022,27 +887,628 @@
                     imports: [
                         i2.RouterModule,
                         http.HttpClientModule,
-                        forms.FormsModule,
-                        ngSelect.NgSelectModule,
                         common.CommonModule,
-                        devextremeAngular.DxMenuModule,
-                        devextremeAngular.DxRangeSelectorModule,
-                        devextremeAngular.DxPopupModule,
-                        devextremeAngular.DxChartModule,
-                        devextremeAngular.DxPieChartModule,
-                        devextremeAngular.DxVectorMapModule,
-                        devextremeAngular.DxDataGridModule,
-                        devextremeAngular.DxBulletModule,
-                        devextremeAngular.DxButtonModule,
-                        devextremeAngular.DxCheckBoxModule,
-                        devextremeAngular.DxSelectBoxModule,
-                        devextremeAngular.DxDropDownButtonModule,
-                        ngxIconPicker.IconPickerModule,
                     ],
-                    exports: [LocationlibraryComponent]
+                    providers: [{ provide: common.LocationStrategy, useClass: common.PathLocationStrategy }],
+                    exports: [LocationlibraryComponent, LocationComponent, LocationleveltypeComponent, LocationsearchfilterComponent]
                 },] }
     ];
     LocationlibraryModule.ctorParameters = function () { return []; };
+
+    var GetaddressService = /** @class */ (function () {
+        function GetaddressService(_HttpCallServieService_) {
+            this._HttpCallServieService_ = _HttpCallServieService_;
+        }
+        GetaddressService.prototype.getByPostcode = function (postcode) {
+            var postData = {
+                service_NAME: "GETADDRESS",
+                request_TYPE: "GET",
+                request_URI: "find/" + postcode + "?api-key=V4QHzniNakGufrLJgB3ROw29270&expand=true",
+                request_BODY: ""
+            };
+            return this._HttpCallServieService_.api(postData);
+        };
+        return GetaddressService;
+    }());
+    GetaddressService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function GetaddressService_Factory() { return new GetaddressService(i0__namespace.ɵɵinject(HttpCallServieService)); }, token: GetaddressService, providedIn: "root" });
+    GetaddressService.decorators = [
+        { type: i0.Injectable, args: [{
+                    providedIn: 'root'
+                },] }
+    ];
+    GetaddressService.ctorParameters = function () { return [
+        { type: HttpCallServieService }
+    ]; };
+
+    var HttpErrorInterceptor = /** @class */ (function () {
+        function HttpErrorInterceptor() {
+        }
+        HttpErrorInterceptor.prototype.intercept = function (request, next) {
+            return next.handle(request).pipe(operators.retry(1), operators.catchError(function (error) {
+                var errorMessage = '';
+                if (error.error instanceof ErrorEvent) {
+                    // client-side error
+                    errorMessage = "Error: " + error.error.message;
+                }
+                else {
+                    // server-side error
+                    errorMessage = "Error Code: " + error.status + "\nMessage: " + error.message;
+                }
+                return rxjs.throwError(errorMessage);
+            }));
+        };
+        return HttpErrorInterceptor;
+    }());
+
+    var LookupService = /** @class */ (function () {
+        function LookupService(_HttpCallServieService_) {
+            this._HttpCallServieService_ = _HttpCallServieService_;
+        }
+        LookupService.prototype.get = function () {
+            var postData = {
+                service_NAME: setting.service_NAME,
+                request_TYPE: "GET",
+                request_URI: "lookup",
+                request_BODY: ""
+            };
+            return this._HttpCallServieService_.api(postData);
+        };
+        LookupService.prototype.getAll = function () {
+            var postData = {
+                service_NAME: setting.service_NAME,
+                request_TYPE: "GET",
+                request_URI: "lookup/all",
+                request_BODY: ""
+            };
+            return this._HttpCallServieService_.api(postData);
+        };
+        LookupService.prototype.getOne = function (id) {
+            var postData = {
+                service_NAME: setting.service_NAME,
+                request_TYPE: "GET",
+                request_URI: "lookup/" + id,
+                request_BODY: ""
+            };
+            return this._HttpCallServieService_.api(postData);
+        };
+        LookupService.prototype.add = function (data) {
+            var postData = {
+                service_NAME: setting.service_NAME,
+                request_TYPE: "POST",
+                request_URI: "lookup",
+                request_BODY: JSON.stringify(data)
+            };
+            return this._HttpCallServieService_.api(postData);
+        };
+        LookupService.prototype.update = function (data, id) {
+            var postData = {
+                service_NAME: setting.service_NAME,
+                request_TYPE: "PUT",
+                request_URI: "lookup/" + id,
+                request_BODY: JSON.stringify(data)
+            };
+            return this._HttpCallServieService_.api(postData);
+        };
+        LookupService.prototype.delete = function (id) {
+            var postData = {
+                service_NAME: setting.service_NAME,
+                request_TYPE: "DELETE",
+                request_URI: "lookup/" + id,
+                request_BODY: ""
+            };
+            return this._HttpCallServieService_.api(postData);
+        };
+        LookupService.prototype.search = function (data) {
+            var postData = {
+                service_NAME: setting.service_NAME,
+                request_TYPE: "POST",
+                request_URI: "lookup/search",
+                request_BODY: JSON.stringify(data)
+            };
+            return this._HttpCallServieService_.api(postData);
+        };
+        LookupService.prototype.searchAll = function (data) {
+            var postData = {
+                service_NAME: setting.service_NAME,
+                request_TYPE: "POST",
+                request_URI: "lookup/search/all",
+                request_BODY: JSON.stringify(data)
+            };
+            return this._HttpCallServieService_.api(postData);
+        };
+        LookupService.prototype.advancedSearch = function (data) {
+            var postData = {
+                service_NAME: setting.service_NAME,
+                request_TYPE: "POST",
+                request_URI: "lookup/advancedsearch",
+                request_BODY: JSON.stringify(data)
+            };
+            return this._HttpCallServieService_.api(postData);
+        };
+        LookupService.prototype.advancedSearchAll = function (data) {
+            var postData = {
+                service_NAME: setting.service_NAME,
+                request_TYPE: "POST",
+                request_URI: "lookup/advancedsearch/all",
+                request_BODY: JSON.stringify(data)
+            };
+            return this._HttpCallServieService_.api(postData);
+        };
+        LookupService.prototype.lookup = function (data) {
+            var postData = {
+                service_NAME: setting.service_NAME,
+                request_TYPE: "POST",
+                request_URI: "lookup/entity",
+                request_BODY: JSON.stringify({ entityname: data })
+            };
+            return this._HttpCallServieService_.api(postData);
+        };
+        LookupService.prototype.entityList = function () {
+            var postData = {
+                service_NAME: setting.service_NAME,
+                request_TYPE: "GET",
+                request_URI: "lookup/entitylist",
+                request_BODY: ""
+            };
+            return this._HttpCallServieService_.api(postData);
+        };
+        return LookupService;
+    }());
+    LookupService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function LookupService_Factory() { return new LookupService(i0__namespace.ɵɵinject(HttpCallServieService)); }, token: LookupService, providedIn: "root" });
+    LookupService.decorators = [
+        { type: i0.Injectable, args: [{
+                    providedIn: "root"
+                },] }
+    ];
+    LookupService.ctorParameters = function () { return [
+        { type: HttpCallServieService }
+    ]; };
+
+    var OnFailService = /** @class */ (function () {
+        function OnFailService(_toaster, _loginService) {
+            this._toaster = _toaster;
+            this._loginService = _loginService;
+        }
+        OnFailService.prototype.onFail = function (ifFail) {
+            if (ifFail.error == "invalid_token") {
+                this._toaster.warning("Internal session expired. Logged in again ", "Logged out");
+                this._loginService.logout();
+                return;
+            }
+            if (ifFail.status == 0) {
+                this._toaster.error("Connection timed out", "Error");
+                return;
+            }
+            if (ifFail.status == 404) {
+                this._toaster.error("unknown error occured", "Error");
+                return;
+            }
+            if (ifFail.hasOwnProperty("_body")) {
+                var body = JSON.parse(ifFail._body);
+                var fail = {};
+                if (!ifFail) {
+                    this._toaster.error("unknown error occured", "Error");
+                    return;
+                }
+                else if (!ifFail._body) {
+                    this._toaster.error("unknown error occured", "Error");
+                    return;
+                }
+                if (ifFail.hasOwnProperty("_body")) {
+                    if (body.status == 400) {
+                        this._toaster.error("unknown error occured", "Error");
+                        return;
+                    }
+                    else if (body.error == "invalid_token") {
+                        this._toaster.warning("Internal session expired. Logged in again ", "Logged out");
+                        this._loginService.logout();
+                        return;
+                    }
+                    else {
+                        this._toaster.error("unknown error occured", "Error");
+                        return;
+                    }
+                }
+                else {
+                    this._toaster.error("Status: " + ifFail.status + " Error: " + body.error + " Message: " + body.error_description, "Error");
+                }
+            }
+            else if (ifFail.hasOwnProperty("message")) {
+                this._toaster.warning("Message", " " + ifFail.message);
+                return;
+            }
+            else {
+                this._toaster.error("check your internet connection", "Error");
+                return;
+            }
+        };
+        return OnFailService;
+    }());
+    OnFailService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function OnFailService_Factory() { return new OnFailService(i0__namespace.ɵɵinject(i3__namespace.ToastrService), i0__namespace.ɵɵinject(LoginService)); }, token: OnFailService, providedIn: "root" });
+    OnFailService.decorators = [
+        { type: i0.Injectable, args: [{
+                    providedIn: 'root'
+                },] }
+    ];
+    OnFailService.ctorParameters = function () { return [
+        { type: i3.ToastrService },
+        { type: LoginService }
+    ]; };
+
+    /*! *****************************************************************************
+    Copyright (c) Microsoft Corporation.
+
+    Permission to use, copy, modify, and/or distribute this software for any
+    purpose with or without fee is hereby granted.
+
+    THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+    REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+    AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+    INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+    LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+    OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+    PERFORMANCE OF THIS SOFTWARE.
+    ***************************************************************************** */
+    /* global Reflect, Promise */
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b)
+                if (Object.prototype.hasOwnProperty.call(b, p))
+                    d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    function __extends(d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    }
+    var __assign = function () {
+        __assign = Object.assign || function __assign(t) {
+            for (var s, i = 1, n = arguments.length; i < n; i++) {
+                s = arguments[i];
+                for (var p in s)
+                    if (Object.prototype.hasOwnProperty.call(s, p))
+                        t[p] = s[p];
+            }
+            return t;
+        };
+        return __assign.apply(this, arguments);
+    };
+    function __rest(s, e) {
+        var t = {};
+        for (var p in s)
+            if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+                t[p] = s[p];
+        if (s != null && typeof Object.getOwnPropertySymbols === "function")
+            for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+                if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                    t[p[i]] = s[p[i]];
+            }
+        return t;
+    }
+    function __decorate(decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function")
+            r = Reflect.decorate(decorators, target, key, desc);
+        else
+            for (var i = decorators.length - 1; i >= 0; i--)
+                if (d = decorators[i])
+                    r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
+    }
+    function __param(paramIndex, decorator) {
+        return function (target, key) { decorator(target, key, paramIndex); };
+    }
+    function __metadata(metadataKey, metadataValue) {
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function")
+            return Reflect.metadata(metadataKey, metadataValue);
+    }
+    function __awaiter(thisArg, _arguments, P, generator) {
+        function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+        return new (P || (P = Promise))(function (resolve, reject) {
+            function fulfilled(value) { try {
+                step(generator.next(value));
+            }
+            catch (e) {
+                reject(e);
+            } }
+            function rejected(value) { try {
+                step(generator["throw"](value));
+            }
+            catch (e) {
+                reject(e);
+            } }
+            function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+            step((generator = generator.apply(thisArg, _arguments || [])).next());
+        });
+    }
+    function __generator(thisArg, body) {
+        var _ = { label: 0, sent: function () { if (t[0] & 1)
+                throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+        return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function () { return this; }), g;
+        function verb(n) { return function (v) { return step([n, v]); }; }
+        function step(op) {
+            if (f)
+                throw new TypeError("Generator is already executing.");
+            while (_)
+                try {
+                    if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done)
+                        return t;
+                    if (y = 0, t)
+                        op = [op[0] & 2, t.value];
+                    switch (op[0]) {
+                        case 0:
+                        case 1:
+                            t = op;
+                            break;
+                        case 4:
+                            _.label++;
+                            return { value: op[1], done: false };
+                        case 5:
+                            _.label++;
+                            y = op[1];
+                            op = [0];
+                            continue;
+                        case 7:
+                            op = _.ops.pop();
+                            _.trys.pop();
+                            continue;
+                        default:
+                            if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) {
+                                _ = 0;
+                                continue;
+                            }
+                            if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) {
+                                _.label = op[1];
+                                break;
+                            }
+                            if (op[0] === 6 && _.label < t[1]) {
+                                _.label = t[1];
+                                t = op;
+                                break;
+                            }
+                            if (t && _.label < t[2]) {
+                                _.label = t[2];
+                                _.ops.push(op);
+                                break;
+                            }
+                            if (t[2])
+                                _.ops.pop();
+                            _.trys.pop();
+                            continue;
+                    }
+                    op = body.call(thisArg, _);
+                }
+                catch (e) {
+                    op = [6, e];
+                    y = 0;
+                }
+                finally {
+                    f = t = 0;
+                }
+            if (op[0] & 5)
+                throw op[1];
+            return { value: op[0] ? op[1] : void 0, done: true };
+        }
+    }
+    var __createBinding = Object.create ? (function (o, m, k, k2) {
+        if (k2 === undefined)
+            k2 = k;
+        Object.defineProperty(o, k2, { enumerable: true, get: function () { return m[k]; } });
+    }) : (function (o, m, k, k2) {
+        if (k2 === undefined)
+            k2 = k;
+        o[k2] = m[k];
+    });
+    function __exportStar(m, o) {
+        for (var p in m)
+            if (p !== "default" && !Object.prototype.hasOwnProperty.call(o, p))
+                __createBinding(o, m, p);
+    }
+    function __values(o) {
+        var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
+        if (m)
+            return m.call(o);
+        if (o && typeof o.length === "number")
+            return {
+                next: function () {
+                    if (o && i >= o.length)
+                        o = void 0;
+                    return { value: o && o[i++], done: !o };
+                }
+            };
+        throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
+    }
+    function __read(o, n) {
+        var m = typeof Symbol === "function" && o[Symbol.iterator];
+        if (!m)
+            return o;
+        var i = m.call(o), r, ar = [], e;
+        try {
+            while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
+                ar.push(r.value);
+        }
+        catch (error) {
+            e = { error: error };
+        }
+        finally {
+            try {
+                if (r && !r.done && (m = i["return"]))
+                    m.call(i);
+            }
+            finally {
+                if (e)
+                    throw e.error;
+            }
+        }
+        return ar;
+    }
+    /** @deprecated */
+    function __spread() {
+        for (var ar = [], i = 0; i < arguments.length; i++)
+            ar = ar.concat(__read(arguments[i]));
+        return ar;
+    }
+    /** @deprecated */
+    function __spreadArrays() {
+        for (var s = 0, i = 0, il = arguments.length; i < il; i++)
+            s += arguments[i].length;
+        for (var r = Array(s), k = 0, i = 0; i < il; i++)
+            for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+                r[k] = a[j];
+        return r;
+    }
+    function __spreadArray(to, from, pack) {
+        if (pack || arguments.length === 2)
+            for (var i = 0, l = from.length, ar; i < l; i++) {
+                if (ar || !(i in from)) {
+                    if (!ar)
+                        ar = Array.prototype.slice.call(from, 0, i);
+                    ar[i] = from[i];
+                }
+            }
+        return to.concat(ar || from);
+    }
+    function __await(v) {
+        return this instanceof __await ? (this.v = v, this) : new __await(v);
+    }
+    function __asyncGenerator(thisArg, _arguments, generator) {
+        if (!Symbol.asyncIterator)
+            throw new TypeError("Symbol.asyncIterator is not defined.");
+        var g = generator.apply(thisArg, _arguments || []), i, q = [];
+        return i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i;
+        function verb(n) { if (g[n])
+            i[n] = function (v) { return new Promise(function (a, b) { q.push([n, v, a, b]) > 1 || resume(n, v); }); }; }
+        function resume(n, v) { try {
+            step(g[n](v));
+        }
+        catch (e) {
+            settle(q[0][3], e);
+        } }
+        function step(r) { r.value instanceof __await ? Promise.resolve(r.value.v).then(fulfill, reject) : settle(q[0][2], r); }
+        function fulfill(value) { resume("next", value); }
+        function reject(value) { resume("throw", value); }
+        function settle(f, v) { if (f(v), q.shift(), q.length)
+            resume(q[0][0], q[0][1]); }
+    }
+    function __asyncDelegator(o) {
+        var i, p;
+        return i = {}, verb("next"), verb("throw", function (e) { throw e; }), verb("return"), i[Symbol.iterator] = function () { return this; }, i;
+        function verb(n, f) { i[n] = o[n] ? function (v) { return (p = !p) ? { value: __await(o[n](v)), done: n === "return" } : f ? f(v) : v; } : f; }
+    }
+    function __asyncValues(o) {
+        if (!Symbol.asyncIterator)
+            throw new TypeError("Symbol.asyncIterator is not defined.");
+        var m = o[Symbol.asyncIterator], i;
+        return m ? m.call(o) : (o = typeof __values === "function" ? __values(o) : o[Symbol.iterator](), i = {}, verb("next"), verb("throw"), verb("return"), i[Symbol.asyncIterator] = function () { return this; }, i);
+        function verb(n) { i[n] = o[n] && function (v) { return new Promise(function (resolve, reject) { v = o[n](v), settle(resolve, reject, v.done, v.value); }); }; }
+        function settle(resolve, reject, d, v) { Promise.resolve(v).then(function (v) { resolve({ value: v, done: d }); }, reject); }
+    }
+    function __makeTemplateObject(cooked, raw) {
+        if (Object.defineProperty) {
+            Object.defineProperty(cooked, "raw", { value: raw });
+        }
+        else {
+            cooked.raw = raw;
+        }
+        return cooked;
+    }
+    ;
+    var __setModuleDefault = Object.create ? (function (o, v) {
+        Object.defineProperty(o, "default", { enumerable: true, value: v });
+    }) : function (o, v) {
+        o["default"] = v;
+    };
+    function __importStar(mod) {
+        if (mod && mod.__esModule)
+            return mod;
+        var result = {};
+        if (mod != null)
+            for (var k in mod)
+                if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k))
+                    __createBinding(result, mod, k);
+        __setModuleDefault(result, mod);
+        return result;
+    }
+    function __importDefault(mod) {
+        return (mod && mod.__esModule) ? mod : { default: mod };
+    }
+    function __classPrivateFieldGet(receiver, state, kind, f) {
+        if (kind === "a" && !f)
+            throw new TypeError("Private accessor was defined without a getter");
+        if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver))
+            throw new TypeError("Cannot read private member from an object whose class did not declare it");
+        return kind === "m" ? f : kind === "a" ? f.call(receiver) : f ? f.value : state.get(receiver);
+    }
+    function __classPrivateFieldSet(receiver, state, value, kind, f) {
+        if (kind === "m")
+            throw new TypeError("Private method is not writable");
+        if (kind === "a" && !f)
+            throw new TypeError("Private accessor was defined without a setter");
+        if (typeof state === "function" ? receiver !== state || !f : !state.has(receiver))
+            throw new TypeError("Cannot write private member to an object whose class did not declare it");
+        return (kind === "a" ? f.call(receiver, value) : f ? f.value = value : state.set(receiver, value)), value;
+    }
+
+    var RequestOptionsService = /** @class */ (function (_super) {
+        __extends(RequestOptionsService, _super);
+        function RequestOptionsService() {
+            var _this = _super.call(this) || this;
+            _this.headers.set('Content-Type', 'application/json');
+            _this.headers.set("grant_type", "password");
+            return _this;
+        }
+        RequestOptionsService.prototype.merge = function (options) {
+            var newOptions = _super.prototype.merge.call(this, options);
+            if (options.url) {
+                if (options.url.search("/USERLOGIN/") !== -1) {
+                    var token = JSON.parse(localStorage.getItem(setting$1.setting.application_ID)).basic_Token_;
+                }
+                else {
+                    var token = JSON.parse(localStorage.getItem(setting$1.setting.application_ID)).access_token;
+                }
+                newOptions.headers.set('authorization', "bearer " + token);
+                return newOptions;
+            }
+            else {
+                newOptions.headers.set('authorization', "bearer " + JSON.parse(localStorage.getItem(setting$1.setting.application_ID)).access_token);
+                return newOptions;
+            }
+        };
+        return RequestOptionsService;
+    }(i1.BaseRequestOptions));
+
+    var SidebarService = /** @class */ (function () {
+        function SidebarService(http, loginService) {
+            this.http = http;
+            this.loginService = loginService;
+            this.LoggedUserId = this.loginService.loaddetail();
+            this.BaseUrl = this.loginService.loaddetail().oauthservice_PATH;
+        }
+        SidebarService.prototype.userprivileges = function () {
+            return this.http.post(this.BaseUrl + "login/userprivileges", { application_ID: this.loginService.loaddetail().application_ID }, {
+                headers: new i1.Headers({
+                    "Content-Type": "application/json",
+                    grant_type: "password",
+                    authorization: "bearer " + this.loginService.loaddetail().basic_Token_
+                })
+            }).pipe(operators.map(function (res) { return res.json(); }));
+        };
+        return SidebarService;
+    }());
+    SidebarService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function SidebarService_Factory() { return new SidebarService(i0__namespace.ɵɵinject(i1__namespace.Http), i0__namespace.ɵɵinject(LoginService)); }, token: SidebarService, providedIn: "root" });
+    SidebarService.decorators = [
+        { type: i0.Injectable, args: [{
+                    providedIn: "root"
+                },] }
+    ];
+    SidebarService.ctorParameters = function () { return [
+        { type: i1.Http },
+        { type: LoginService }
+    ]; };
 
     /*
      * Public API Surface of locationlibrary
@@ -1052,16 +1518,22 @@
      * Generated bundle index. Do not edit.
      */
 
+    exports.GetaddressService = GetaddressService;
+    exports.HttpCallServieService = HttpCallServieService;
+    exports.HttpErrorInterceptor = HttpErrorInterceptor;
+    exports.LocationComponent = LocationComponent;
+    exports.LocationService = LocationService;
+    exports.LocationleveltypeComponent = LocationleveltypeComponent;
+    exports.LocationleveltypeService = LocationleveltypeService;
     exports.LocationlibraryComponent = LocationlibraryComponent;
     exports.LocationlibraryModule = LocationlibraryModule;
     exports.LocationlibraryService = LocationlibraryService;
-    exports["ɵa"] = LocationComponent;
-    exports["ɵb"] = LocationService;
-    exports["ɵc"] = LocationleveltypeService;
-    exports["ɵd"] = OnFailService;
-    exports["ɵe"] = LoginService;
-    exports["ɵf"] = LocationleveltypeComponent;
-    exports["ɵg"] = LocationsearchfilterComponent;
+    exports.LocationsearchfilterComponent = LocationsearchfilterComponent;
+    exports.LoginService = LoginService;
+    exports.LookupService = LookupService;
+    exports.OnFailService = OnFailService;
+    exports.RequestOptionsService = RequestOptionsService;
+    exports.SidebarService = SidebarService;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

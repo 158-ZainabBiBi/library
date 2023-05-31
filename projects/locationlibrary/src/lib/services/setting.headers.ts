@@ -1,5 +1,5 @@
 import { RequestOptions, BaseRequestOptions, RequestOptionsArgs } from '@angular/http';
-import { setting } from '../setting';
+import { setting } from 'projects/locationlibrary/src/lib/setting';
 
 export class RequestOptionsService extends BaseRequestOptions {
 

@@ -1,5 +1,5 @@
 import { ToastrService } from "ngx-toastr";
-import { LoginService } from '../pages/login/login.service';
+import { LoginService } from './login.service';
 export declare class OnFailService {
     private _toaster;
     private _loginService;

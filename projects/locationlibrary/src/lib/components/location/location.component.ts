@@ -7,7 +7,7 @@ import { LocationleveltypeService } from '../locationleveltype/locationleveltype
 import { LocationleveltypeComponent } from '../locationleveltype/locationleveltype.component'
 import { LocationsearchfilterComponent } from '../locationsearchfilter/locationsearchfilter.component'
 import { LocationService } from './location.service';
-import { OnFailService } from '../../services/on-fail.service';
+import { OnFailService } from 'projects/locationlibrary/src/lib/services/on-fail.service';
 
 @Component({
   selector: 'app-location',

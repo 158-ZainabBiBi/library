@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
-import { OnFailService } from '../../services/on-fail.service';
+import { OnFailService } from 'projects/locationlibrary/src/lib/services/on-fail.service';
 import { LocationleveltypeService } from '../locationleveltype/locationleveltype.service';
 
 import { LocationComponent } from '../location/location.component';
