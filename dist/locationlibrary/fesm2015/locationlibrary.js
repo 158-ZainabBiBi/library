@@ -6,12 +6,9 @@ import { Router, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import * as i3 from 'ngx-toastr';
 import { ToastrService } from 'ngx-toastr';
-import { OnFailService as OnFailService$1 } from 'projects/locationlibrary/src/lib/services/on-fail.service';
-import { HttpCallServieService as HttpCallServieService$1 } from 'projects/locationlibrary/src/lib/services/http-call-service.service';
 import * as i1 from '@angular/http';
 import { Http, BaseRequestOptions, Headers } from '@angular/http';
 import { map, retry, catchError } from 'rxjs/operators';
-import { setting as setting$1 } from 'projects/locationlibrary/src/lib/setting';
 import { throwError } from 'rxjs';
 
 class LocationlibraryService {
@@ -42,22 +39,6 @@ LocationlibraryComponent.decorators = [
 ];
 LocationlibraryComponent.ctorParameters = () => [];
 
-const setting = {
-    AppsStorePath: "http://apps.kitaas.edu.pk/#/",
-    LoginAppPath: "http://accounts.kitaas.edu.pk/#/",
-    application_ID: "LocationManagementDev",
-    companyName: 'Khuldunia Inistitute of Technology and Applied Sciences',
-    companyShortName: 'KITAAS',
-    logo: 'https://kitaas.com.pk/kitaasdesign/images/logo.png',
-    logo1white: 'https://kitaas.com.pk/kitaasdesign/images/logo-short.png',
-    loginBanner1: 'https://kitaas.com.pk/kitaasdesign/images/intro-back.jpeg',
-    icon: 'https://kitaas.com.pk/kitaasdesign/images/favicon.ico',
-    service_NAME: 'LOCATION',
-    locationservice_NAME: 'LOCATION',
-    isHash: '/#',
-    redirctPath: '',
-};
-
 class LoginService {
     constructor(http, _router, _toastr) {
         this.http = http;
@@ -75,7 +56,7 @@ class LoginService {
     }
     saveDetail(user) {
         if (user) {
-            localStorage.setItem(setting$1.application_ID, JSON.stringify(user));
+            localStorage.setItem("LocationManagement", JSON.stringify(user));
             return true;
         }
         else {
@@ -87,18 +68,18 @@ class LoginService {
         this.authToken = token;
     }
     loaddetail() {
-        const getUser = localStorage.getItem(setting$1.application_ID);
+        const getUser = localStorage.getItem("LocationManagement");
         this.user = JSON.parse(getUser);
         return this.user;
     }
     logout() {
-        localStorage.removeItem(setting$1.application_ID);
+        localStorage.removeItem("LocationManagement");
         localStorage.removeItem("access_token");
-        window.location.assign(setting$1.LoginAppPath + "logout?application_ID=" + setting$1.application_ID);
+        window.location.assign("http://accounts.kitaas.edu.pk/#/" + "logout?application_ID=" + "LocationManagement");
         return true;
     }
     logged() {
-        const getUser = localStorage.getItem(setting$1.application_ID);
+        const getUser = localStorage.getItem("LocationManagement");
         const _application_name_access_token_ = localStorage.getItem("access_token");
         if (getUser && _application_name_access_token_) {
             return true;
@@ -120,7 +101,7 @@ LoginService.ctorParameters = () => [
     { type: ToastrService }
 ];
 
-class HttpCallServieService {
+class HttpcallService {
     constructor(http, loginService) {
         this.http = http;
         this.loginService = loginService;
@@ -131,233 +112,233 @@ class HttpCallServieService {
         return this.http.post(this.BaseUrl + "apigateway", postData).pipe(map(res => res.json()));
     }
 }
-HttpCallServieService.ɵprov = i0.ɵɵdefineInjectable({ factory: function HttpCallServieService_Factory() { return new HttpCallServieService(i0.ɵɵinject(i1.Http), i0.ɵɵinject(LoginService)); }, token: HttpCallServieService, providedIn: "root" });
-HttpCallServieService.decorators = [
+HttpcallService.ɵprov = i0.ɵɵdefineInjectable({ factory: function HttpcallService_Factory() { return new HttpcallService(i0.ɵɵinject(i1.Http), i0.ɵɵinject(LoginService)); }, token: HttpcallService, providedIn: "root" });
+HttpcallService.decorators = [
     { type: Injectable, args: [{
                 providedIn: 'root'
             },] }
 ];
-HttpCallServieService.ctorParameters = () => [
+HttpcallService.ctorParameters = () => [
     { type: Http },
     { type: LoginService }
 ];
 
 class LocationleveltypeService {
-    constructor(_HttpCallServieService_) {
-        this._HttpCallServieService_ = _HttpCallServieService_;
+    constructor(_HttpcallService_) {
+        this._HttpcallService_ = _HttpcallService_;
     }
     get() {
         var postData = {
-            service_NAME: setting.locationservice_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "GET",
             request_URI: "lookup",
             request_BODY: ""
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     getAll() {
         var postData = {
-            service_NAME: setting.locationservice_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "GET",
             request_URI: "lookup/all",
             request_BODY: ""
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     getOne(id) {
         var postData = {
-            service_NAME: setting.locationservice_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "GET",
             request_URI: "lookup/" + id,
             request_BODY: ""
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     add(data) {
         var postData = {
-            service_NAME: setting.locationservice_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "POST",
             request_URI: "lookup",
             request_BODY: JSON.stringify(data)
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     update(data, id) {
         var postData = {
-            service_NAME: setting.locationservice_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "PUT",
             request_URI: "lookup/" + id,
             request_BODY: JSON.stringify(data)
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     delete(id) {
         var postData = {
-            service_NAME: setting.locationservice_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "DELETE",
             request_URI: "lookup/" + id,
             request_BODY: ""
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     search(data) {
         var postData = {
-            service_NAME: setting.locationservice_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "POST",
             request_URI: "lookup/search",
             request_BODY: JSON.stringify(data)
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     searchAll(data) {
         var postData = {
-            service_NAME: setting.locationservice_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "POST",
             request_URI: "lookup/search/all",
             request_BODY: JSON.stringify(data)
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     advancedSearch(data) {
         var postData = {
-            service_NAME: setting.locationservice_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "POST",
             request_URI: "lookup/advancedsearch",
             request_BODY: JSON.stringify(data)
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     advancedSearchAll(data) {
         var postData = {
-            service_NAME: setting.locationservice_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "POST",
             request_URI: "lookup/advancedsearch/all",
             request_BODY: JSON.stringify(data)
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     lookup(data) {
         var postData = {
-            service_NAME: setting.locationservice_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "POST",
             request_URI: "lookup/entity",
             request_BODY: JSON.stringify({ entityname: data })
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     entityList() {
         var postData = {
-            service_NAME: setting.locationservice_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "GET",
             request_URI: "lookup/entitylist",
             request_BODY: ""
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
 }
-LocationleveltypeService.ɵprov = i0.ɵɵdefineInjectable({ factory: function LocationleveltypeService_Factory() { return new LocationleveltypeService(i0.ɵɵinject(HttpCallServieService)); }, token: LocationleveltypeService, providedIn: "root" });
+LocationleveltypeService.ɵprov = i0.ɵɵdefineInjectable({ factory: function LocationleveltypeService_Factory() { return new LocationleveltypeService(i0.ɵɵinject(HttpcallService)); }, token: LocationleveltypeService, providedIn: "root" });
 LocationleveltypeService.decorators = [
     { type: Injectable, args: [{
                 providedIn: "root"
             },] }
 ];
 LocationleveltypeService.ctorParameters = () => [
-    { type: HttpCallServieService$1 }
+    { type: HttpcallService }
 ];
 
 class LocationService {
-    constructor(_HttpCallServieService_) {
-        this._HttpCallServieService_ = _HttpCallServieService_;
+    constructor(_HttpcallService_) {
+        this._HttpcallService_ = _HttpcallService_;
     }
     get() {
         var postData = {
-            service_NAME: setting.locationservice_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "GET",
             request_URI: "location",
             request_BODY: ""
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     getAll() {
         var postData = {
-            service_NAME: setting.locationservice_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "GET",
             request_URI: "location/all",
             request_BODY: ""
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     getOne(id) {
         var postData = {
-            service_NAME: setting.locationservice_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "GET",
             request_URI: "location/" + id,
             request_BODY: ""
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     add(data) {
         var postData = {
-            service_NAME: setting.locationservice_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "POST",
             request_URI: "location",
             request_BODY: JSON.stringify(data)
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     update(data, id) {
         var postData = {
-            service_NAME: setting.locationservice_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "PUT",
             request_URI: "location/" + id,
             request_BODY: JSON.stringify(data)
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     delete(id) {
         var postData = {
-            service_NAME: setting.locationservice_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "DELETE",
             request_URI: "location/" + id,
             request_BODY: ""
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     search(data) {
         var postData = {
-            service_NAME: setting.locationservice_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "POST",
             request_URI: "location/search",
             request_BODY: JSON.stringify(data)
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     searchAll(data) {
         var postData = {
-            service_NAME: setting.locationservice_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "POST",
             request_URI: "location/search/all",
             request_BODY: JSON.stringify(data)
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     advancedSearch(data) {
         var postData = {
-            service_NAME: setting.locationservice_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "POST",
             request_URI: "location/advancedsearch",
             request_BODY: JSON.stringify(data)
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     advancedSearchAll(data) {
         var postData = {
-            service_NAME: setting.locationservice_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "POST",
             request_URI: "location/advancedsearch/all",
             request_BODY: JSON.stringify(data)
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     getAllDetail(response) {
         for (var a = 0; a < response.length; a++) {
@@ -376,14 +357,84 @@ class LocationService {
         return (response);
     }
 }
-LocationService.ɵprov = i0.ɵɵdefineInjectable({ factory: function LocationService_Factory() { return new LocationService(i0.ɵɵinject(HttpCallServieService)); }, token: LocationService, providedIn: "root" });
+LocationService.ɵprov = i0.ɵɵdefineInjectable({ factory: function LocationService_Factory() { return new LocationService(i0.ɵɵinject(HttpcallService)); }, token: LocationService, providedIn: "root" });
 LocationService.decorators = [
     { type: Injectable, args: [{
                 providedIn: "root"
             },] }
 ];
 LocationService.ctorParameters = () => [
-    { type: HttpCallServieService$1 }
+    { type: HttpcallService }
+];
+
+class OnfailService {
+    constructor(_toaster, _loginService) {
+        this._toaster = _toaster;
+        this._loginService = _loginService;
+    }
+    onFail(ifFail) {
+        if (ifFail.error == "invalid_token") {
+            this._toaster.warning("Internal session expired. Logged in again ", "Logged out");
+            this._loginService.logout();
+            return;
+        }
+        if (ifFail.status == 0) {
+            this._toaster.error("Connection timed out", "Error");
+            return;
+        }
+        if (ifFail.status == 404) {
+            this._toaster.error("unknown error occured", "Error");
+            return;
+        }
+        if (ifFail.hasOwnProperty("_body")) {
+            let body = JSON.parse(ifFail._body);
+            var fail = {};
+            if (!ifFail) {
+                this._toaster.error("unknown error occured", "Error");
+                return;
+            }
+            else if (!ifFail._body) {
+                this._toaster.error("unknown error occured", "Error");
+                return;
+            }
+            if (ifFail.hasOwnProperty("_body")) {
+                if (body.status == 400) {
+                    this._toaster.error("unknown error occured", "Error");
+                    return;
+                }
+                else if (body.error == "invalid_token") {
+                    this._toaster.warning("Internal session expired. Logged in again ", "Logged out");
+                    this._loginService.logout();
+                    return;
+                }
+                else {
+                    this._toaster.error("unknown error occured", "Error");
+                    return;
+                }
+            }
+            else {
+                this._toaster.error("Status: " + ifFail.status + " Error: " + body.error + " Message: " + body.error_description, "Error");
+            }
+        }
+        else if (ifFail.hasOwnProperty("message")) {
+            this._toaster.warning("Message", " " + ifFail.message);
+            return;
+        }
+        else {
+            this._toaster.error("check your internet connection", "Error");
+            return;
+        }
+    }
+}
+OnfailService.ɵprov = i0.ɵɵdefineInjectable({ factory: function OnfailService_Factory() { return new OnfailService(i0.ɵɵinject(i3.ToastrService), i0.ɵɵinject(LoginService)); }, token: OnfailService, providedIn: "root" });
+OnfailService.decorators = [
+    { type: Injectable, args: [{
+                providedIn: 'root'
+            },] }
+];
+OnfailService.ctorParameters = () => [
+    { type: ToastrService },
+    { type: LoginService }
 ];
 
 class LocationComponent {
@@ -652,7 +703,7 @@ LocationComponent.ctorParameters = () => [
     { type: LocationService },
     { type: LocationleveltypeService },
     { type: ToastrService },
-    { type: OnFailService$1 },
+    { type: OnfailService },
     { type: Router }
 ];
 LocationComponent.propDecorators = {
@@ -767,7 +818,7 @@ LocationsearchfilterComponent.decorators = [
 LocationsearchfilterComponent.ctorParameters = () => [
     { type: LocationleveltypeService },
     { type: ToastrService },
-    { type: OnFailService$1 }
+    { type: OnfailService }
 ];
 LocationsearchfilterComponent.propDecorators = {
     locations: [{ type: ViewChildren, args: [LocationComponent,] }],
@@ -833,7 +884,7 @@ LocationleveltypeComponent.decorators = [
 LocationleveltypeComponent.ctorParameters = () => [
     { type: LocationleveltypeService },
     { type: ToastrService },
-    { type: OnFailService$1 }
+    { type: OnfailService }
 ];
 LocationleveltypeComponent.propDecorators = {
     iscompulsory: [{ type: Input }],
@@ -862,8 +913,8 @@ LocationlibraryModule.decorators = [
 LocationlibraryModule.ctorParameters = () => [];
 
 class GetaddressService {
-    constructor(_HttpCallServieService_) {
-        this._HttpCallServieService_ = _HttpCallServieService_;
+    constructor(_HttpcallService_) {
+        this._HttpcallService_ = _HttpcallService_;
     }
     getByPostcode(postcode) {
         var postData = {
@@ -872,17 +923,17 @@ class GetaddressService {
             request_URI: "find/" + postcode + "?api-key=V4QHzniNakGufrLJgB3ROw29270&expand=true",
             request_BODY: ""
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
 }
-GetaddressService.ɵprov = i0.ɵɵdefineInjectable({ factory: function GetaddressService_Factory() { return new GetaddressService(i0.ɵɵinject(HttpCallServieService)); }, token: GetaddressService, providedIn: "root" });
+GetaddressService.ɵprov = i0.ɵɵdefineInjectable({ factory: function GetaddressService_Factory() { return new GetaddressService(i0.ɵɵinject(HttpcallService)); }, token: GetaddressService, providedIn: "root" });
 GetaddressService.decorators = [
     { type: Injectable, args: [{
                 providedIn: 'root'
             },] }
 ];
 GetaddressService.ctorParameters = () => [
-    { type: HttpCallServieService }
+    { type: HttpcallService }
 ];
 
 class HttpErrorInterceptor {
@@ -903,196 +954,126 @@ class HttpErrorInterceptor {
 }
 
 class LookupService {
-    constructor(_HttpCallServieService_) {
-        this._HttpCallServieService_ = _HttpCallServieService_;
+    constructor(_HttpcallService_) {
+        this._HttpcallService_ = _HttpcallService_;
     }
     get() {
         var postData = {
-            service_NAME: setting.service_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "GET",
             request_URI: "lookup",
             request_BODY: ""
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     getAll() {
         var postData = {
-            service_NAME: setting.service_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "GET",
             request_URI: "lookup/all",
             request_BODY: ""
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     getOne(id) {
         var postData = {
-            service_NAME: setting.service_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "GET",
             request_URI: "lookup/" + id,
             request_BODY: ""
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     add(data) {
         var postData = {
-            service_NAME: setting.service_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "POST",
             request_URI: "lookup",
             request_BODY: JSON.stringify(data)
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     update(data, id) {
         var postData = {
-            service_NAME: setting.service_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "PUT",
             request_URI: "lookup/" + id,
             request_BODY: JSON.stringify(data)
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     delete(id) {
         var postData = {
-            service_NAME: setting.service_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "DELETE",
             request_URI: "lookup/" + id,
             request_BODY: ""
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     search(data) {
         var postData = {
-            service_NAME: setting.service_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "POST",
             request_URI: "lookup/search",
             request_BODY: JSON.stringify(data)
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     searchAll(data) {
         var postData = {
-            service_NAME: setting.service_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "POST",
             request_URI: "lookup/search/all",
             request_BODY: JSON.stringify(data)
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     advancedSearch(data) {
         var postData = {
-            service_NAME: setting.service_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "POST",
             request_URI: "lookup/advancedsearch",
             request_BODY: JSON.stringify(data)
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     advancedSearchAll(data) {
         var postData = {
-            service_NAME: setting.service_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "POST",
             request_URI: "lookup/advancedsearch/all",
             request_BODY: JSON.stringify(data)
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     lookup(data) {
         var postData = {
-            service_NAME: setting.service_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "POST",
             request_URI: "lookup/entity",
             request_BODY: JSON.stringify({ entityname: data })
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
     entityList() {
         var postData = {
-            service_NAME: setting.service_NAME,
+            service_NAME: "LOCATION",
             request_TYPE: "GET",
             request_URI: "lookup/entitylist",
             request_BODY: ""
         };
-        return this._HttpCallServieService_.api(postData);
+        return this._HttpcallService_.api(postData);
     }
 }
-LookupService.ɵprov = i0.ɵɵdefineInjectable({ factory: function LookupService_Factory() { return new LookupService(i0.ɵɵinject(HttpCallServieService)); }, token: LookupService, providedIn: "root" });
+LookupService.ɵprov = i0.ɵɵdefineInjectable({ factory: function LookupService_Factory() { return new LookupService(i0.ɵɵinject(HttpcallService)); }, token: LookupService, providedIn: "root" });
 LookupService.decorators = [
     { type: Injectable, args: [{
                 providedIn: "root"
             },] }
 ];
 LookupService.ctorParameters = () => [
-    { type: HttpCallServieService }
-];
-
-class OnFailService {
-    constructor(_toaster, _loginService) {
-        this._toaster = _toaster;
-        this._loginService = _loginService;
-    }
-    onFail(ifFail) {
-        if (ifFail.error == "invalid_token") {
-            this._toaster.warning("Internal session expired. Logged in again ", "Logged out");
-            this._loginService.logout();
-            return;
-        }
-        if (ifFail.status == 0) {
-            this._toaster.error("Connection timed out", "Error");
-            return;
-        }
-        if (ifFail.status == 404) {
-            this._toaster.error("unknown error occured", "Error");
-            return;
-        }
-        if (ifFail.hasOwnProperty("_body")) {
-            let body = JSON.parse(ifFail._body);
-            var fail = {};
-            if (!ifFail) {
-                this._toaster.error("unknown error occured", "Error");
-                return;
-            }
-            else if (!ifFail._body) {
-                this._toaster.error("unknown error occured", "Error");
-                return;
-            }
-            if (ifFail.hasOwnProperty("_body")) {
-                if (body.status == 400) {
-                    this._toaster.error("unknown error occured", "Error");
-                    return;
-                }
-                else if (body.error == "invalid_token") {
-                    this._toaster.warning("Internal session expired. Logged in again ", "Logged out");
-                    this._loginService.logout();
-                    return;
-                }
-                else {
-                    this._toaster.error("unknown error occured", "Error");
-                    return;
-                }
-            }
-            else {
-                this._toaster.error("Status: " + ifFail.status + " Error: " + body.error + " Message: " + body.error_description, "Error");
-            }
-        }
-        else if (ifFail.hasOwnProperty("message")) {
-            this._toaster.warning("Message", " " + ifFail.message);
-            return;
-        }
-        else {
-            this._toaster.error("check your internet connection", "Error");
-            return;
-        }
-    }
-}
-OnFailService.ɵprov = i0.ɵɵdefineInjectable({ factory: function OnFailService_Factory() { return new OnFailService(i0.ɵɵinject(i3.ToastrService), i0.ɵɵinject(LoginService)); }, token: OnFailService, providedIn: "root" });
-OnFailService.decorators = [
-    { type: Injectable, args: [{
-                providedIn: 'root'
-            },] }
-];
-OnFailService.ctorParameters = () => [
-    { type: ToastrService },
-    { type: LoginService }
+    { type: HttpcallService }
 ];
 
 class RequestOptionsService extends BaseRequestOptions {
@@ -1105,16 +1086,16 @@ class RequestOptionsService extends BaseRequestOptions {
         const newOptions = super.merge(options);
         if (options.url) {
             if (options.url.search("/USERLOGIN/") !== -1) {
-                var token = JSON.parse(localStorage.getItem(setting$1.application_ID)).basic_Token_;
+                var token = JSON.parse(localStorage.getItem("LocationManagement")).basic_Token_;
             }
             else {
-                var token = JSON.parse(localStorage.getItem(setting$1.application_ID)).access_token;
+                var token = JSON.parse(localStorage.getItem("LocationManagement")).access_token;
             }
             newOptions.headers.set('authorization', `bearer ${token}`);
             return newOptions;
         }
         else {
-            newOptions.headers.set('authorization', `bearer ${JSON.parse(localStorage.getItem(setting$1.application_ID)).access_token}`);
+            newOptions.headers.set('authorization', `bearer ${JSON.parse(localStorage.getItem("LocationManagement")).access_token}`);
             return newOptions;
         }
     }
@@ -1156,5 +1137,5 @@ SidebarService.ctorParameters = () => [
  * Generated bundle index. Do not edit.
  */
 
-export { GetaddressService, HttpCallServieService, HttpErrorInterceptor, LocationComponent, LocationService, LocationleveltypeComponent, LocationleveltypeService, LocationlibraryComponent, LocationlibraryModule, LocationlibraryService, LocationsearchfilterComponent, LoginService, LookupService, OnFailService, RequestOptionsService, SidebarService };
+export { GetaddressService, HttpErrorInterceptor, HttpcallService, LocationComponent, LocationService, LocationleveltypeComponent, LocationleveltypeService, LocationlibraryComponent, LocationlibraryModule, LocationlibraryService, LocationsearchfilterComponent, LoginService, LookupService, OnfailService, RequestOptionsService, SidebarService };
 //# sourceMappingURL=locationlibrary.js.map

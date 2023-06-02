@@ -1,7 +1,7 @@
 import { OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { OnFailService } from 'projects/locationlibrary/src/lib/services/on-fail.service';
 import { LocationleveltypeService } from './locationleveltype.service';
+import { OnfailService } from '../../services/onfail.service';
 export declare class LocationleveltypeComponent implements OnInit {
     private locationleveltypeservice;
     private toastrservice;
@@ -11,9 +11,8 @@ export declare class LocationleveltypeComponent implements OnInit {
     all: boolean;
     locationleveltypeID: any;
     locationleveltypes: any[];
-    constructor(locationleveltypeservice: LocationleveltypeService, toastrservice: ToastrService, onfailservice: OnFailService);
+    constructor(locationleveltypeservice: LocationleveltypeService, toastrservice: ToastrService, onfailservice: OnfailService);
     ngOnInit(): void;
     setLocationType(response: any): void;
     locationleveltypeGet(): void;
 }
-//# sourceMappingURL=locationleveltype.component.d.ts.map

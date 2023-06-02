@@ -5,7 +5,7 @@ import { LocationleveltypeService } from '../locationleveltype/locationleveltype
 import { LocationleveltypeComponent } from '../locationleveltype/locationleveltype.component';
 import { LocationsearchfilterComponent } from '../locationsearchfilter/locationsearchfilter.component';
 import { LocationService } from './location.service';
-import { OnFailService } from 'projects/locationlibrary/src/lib/services/on-fail.service';
+import { OnfailService } from '../../services/onfail.service';
 export declare class LocationComponent implements OnInit {
     private locationservice;
     private locationleveltypeservice;
@@ -49,7 +49,7 @@ export declare class LocationComponent implements OnInit {
         locationleveltype_ID: any;
         locationparent_ID: any;
     };
-    constructor(locationservice: LocationService, locationleveltypeservice: LocationleveltypeService, toastrservice: ToastrService, onfailservice: OnFailService, router: Router);
+    constructor(locationservice: LocationService, locationleveltypeservice: LocationleveltypeService, toastrservice: ToastrService, onfailservice: OnfailService, router: Router);
     ngOnInit(): void;
     onToolbarPreparing(e: any): void;
     add(): void;
@@ -69,4 +69,3 @@ export declare class LocationComponent implements OnInit {
     locationUpdate(location: any): void;
     locationleveltypeGetOne(id: any): void;
 }
-//# sourceMappingURL=location.component.d.ts.map

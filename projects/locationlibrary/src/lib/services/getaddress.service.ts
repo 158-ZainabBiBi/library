@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-
-import { HttpCallServieService } from "./http-call-service.service";
+import { HttpcallService } from './httpcall.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +7,7 @@ import { HttpCallServieService } from "./http-call-service.service";
 export class GetaddressService {
 
   constructor(
-    private _HttpCallServieService_: HttpCallServieService
+    private _HttpcallService_: HttpcallService
   ) { }
 
   getByPostcode(postcode) {
@@ -19,6 +18,6 @@ export class GetaddressService {
       request_BODY: ""
     }
 
-    return this._HttpCallServieService_.api(postData);
+    return this._HttpcallService_.api(postData);
   }
 }

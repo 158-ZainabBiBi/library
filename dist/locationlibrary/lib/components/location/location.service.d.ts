@@ -1,7 +1,7 @@
-import { HttpCallServieService } from "projects/locationlibrary/src/lib/services/http-call-service.service";
+import { HttpcallService } from "../../services/httpcall.service";
 export declare class LocationService {
-    private _HttpCallServieService_;
-    constructor(_HttpCallServieService_: HttpCallServieService);
+    private _HttpcallService_;
+    constructor(_HttpcallService_: HttpcallService);
     get(): import("rxjs").Observable<any>;
     getAll(): import("rxjs").Observable<any>;
     getOne(id: any): import("rxjs").Observable<any>;
@@ -15,4 +15,3 @@ export declare class LocationService {
     getAllDetail(response: any): any;
     getDetail(response: any): any;
 }
-//# sourceMappingURL=location.service.d.ts.map

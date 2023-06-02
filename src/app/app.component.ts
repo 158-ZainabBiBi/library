@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { setting } from 'projects/locationlibrary/src/lib/setting';
+import { setting } from 'src/setting';
 
 @Component({
   selector: 'app-root',

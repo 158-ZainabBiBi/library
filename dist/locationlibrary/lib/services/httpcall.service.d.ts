@@ -1,6 +1,6 @@
 import { Http } from "@angular/http";
 import { LoginService } from "./login.service";
-export declare class HttpCallServieService {
+export declare class HttpcallService {
     private http;
     private loginService;
     constructor(http: Http, loginService: LoginService);
@@ -8,4 +8,3 @@ export declare class HttpCallServieService {
     AuthUrl: any;
     api(postData: any): import("rxjs").Observable<any>;
 }
-//# sourceMappingURL=http-call-service.service.d.ts.map

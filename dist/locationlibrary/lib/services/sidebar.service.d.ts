@@ -8,4 +8,3 @@ export declare class SidebarService {
     BaseUrl: any;
     userprivileges(): import("rxjs").Observable<any>;
 }
-//# sourceMappingURL=sidebar.service.d.ts.map

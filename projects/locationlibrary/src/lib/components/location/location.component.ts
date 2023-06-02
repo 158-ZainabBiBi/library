@@ -3,11 +3,10 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 import { LocationleveltypeService } from '../locationleveltype/locationleveltype.service';
-
 import { LocationleveltypeComponent } from '../locationleveltype/locationleveltype.component'
 import { LocationsearchfilterComponent } from '../locationsearchfilter/locationsearchfilter.component'
 import { LocationService } from './location.service';
-import { OnFailService } from 'projects/locationlibrary/src/lib/services/on-fail.service';
+import { OnfailService } from '../../services/onfail.service';
 
 @Component({
   selector: 'app-location',
@@ -68,7 +67,7 @@ export class LocationComponent implements OnInit {
     private locationservice: LocationService,
     private locationleveltypeservice: LocationleveltypeService,
     private toastrservice: ToastrService,
-    private onfailservice: OnFailService,
+    private onfailservice: OnfailService,
     private router : Router,
   ) { }
 
@@ -293,5 +292,7 @@ export class LocationComponent implements OnInit {
       this.onfailservice.onFail(error);
     })
   }
+
+
 
 }

@@ -1,13 +1,12 @@
 import { Injectable } from "@angular/core";
 import { Http } from "@angular/http";
 import { map, catchError } from "rxjs/operators";
-
 import { LoginService } from "./login.service";
 
 @Injectable({
   providedIn: 'root'
 })
-export class HttpCallServieService {
+export class HttpcallService {
 
   constructor(
     private http: Http,
@@ -20,5 +19,4 @@ export class HttpCallServieService {
   api(postData) {
     return this.http.post(this.BaseUrl + "apigateway", postData).pipe(map(res => res.json()));
   }
-
 }

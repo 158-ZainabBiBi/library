@@ -16,4 +16,3 @@ export declare class LoginService {
     logout(): boolean;
     logged(): boolean;
 }
-//# sourceMappingURL=login.service.d.ts.map

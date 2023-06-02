@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
-import { OnFailService } from 'projects/locationlibrary/src/lib/services/on-fail.service';
 import { LocationleveltypeService } from './locationleveltype.service';
+import { OnfailService } from '../../services/onfail.service';
 
 @Component({
   selector: 'app-locationleveltype',
@@ -24,7 +24,7 @@ export class LocationleveltypeComponent implements OnInit {
   constructor(
     private locationleveltypeservice: LocationleveltypeService,
     private toastrservice: ToastrService,
-    private onfailservice: OnFailService,
+    private onfailservice: OnfailService,
   ) { }
 
   ngOnInit(): void {

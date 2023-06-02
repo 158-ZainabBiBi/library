@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
-import { setting } from "../../setting";
-import { HttpCallServieService } from "projects/locationlibrary/src/lib/services/http-call-service.service";
+import { HttpcallService } from "../../services/httpcall.service";
 
 @Injectable({
   providedIn: "root"
@@ -8,109 +7,109 @@ import { HttpCallServieService } from "projects/locationlibrary/src/lib/services
 export class LocationService {
 
   constructor(
-    private _HttpCallServieService_: HttpCallServieService
+    private _HttpcallService_: HttpcallService
   ) { }
 
   get() {
     var postData = {
-      service_NAME: setting.locationservice_NAME,
+      service_NAME: "LOCATION",
       request_TYPE: "GET",
       request_URI: "location",
       request_BODY: ""
     }
-    return this._HttpCallServieService_.api(postData);
+    return this._HttpcallService_.api(postData);
   }
 
   getAll() {
     var postData = {
-      service_NAME: setting.locationservice_NAME,
+      service_NAME: "LOCATION",
       request_TYPE: "GET",
       request_URI: "location/all",
       request_BODY: ""
     }
-    return this._HttpCallServieService_.api(postData);
+    return this._HttpcallService_.api(postData);
   }
 
   getOne(id) {
     var postData = {
-      service_NAME: setting.locationservice_NAME,
+      service_NAME: "LOCATION",
       request_TYPE: "GET",
       request_URI: "location/" + id,
       request_BODY: ""
     }
-    return this._HttpCallServieService_.api(postData);
+    return this._HttpcallService_.api(postData);
   }
 
   add(data) {
     var postData = {
-      service_NAME: setting.locationservice_NAME,
+      service_NAME: "LOCATION",
       request_TYPE: "POST",
       request_URI: "location",
       request_BODY: JSON.stringify(data)
     }
-    return this._HttpCallServieService_.api(postData);
+    return this._HttpcallService_.api(postData);
   }
 
   update(data, id) {
     var postData = {
-      service_NAME: setting.locationservice_NAME,
+      service_NAME: "LOCATION",
       request_TYPE: "PUT",
       request_URI: "location/" + id,
       request_BODY: JSON.stringify(data)
 
     }
-    return this._HttpCallServieService_.api(postData);
+    return this._HttpcallService_.api(postData);
   }
 
   delete(id) {
     var postData = {
-      service_NAME: setting.locationservice_NAME,
+      service_NAME: "LOCATION",
       request_TYPE: "DELETE",
       request_URI: "location/" + id,
       request_BODY: ""
     }
-    return this._HttpCallServieService_.api(postData);
+    return this._HttpcallService_.api(postData);
   }
 
   search(data) {
     var postData = {
-      service_NAME: setting.locationservice_NAME,
+      service_NAME: "LOCATION",
       request_TYPE: "POST",
       request_URI: "location/search",
       request_BODY: JSON.stringify(data)
 
     }
-    return this._HttpCallServieService_.api(postData);
+    return this._HttpcallService_.api(postData);
   }
 
   searchAll(data) {
     var postData = {
-      service_NAME: setting.locationservice_NAME,
+      service_NAME: "LOCATION",
       request_TYPE: "POST",
       request_URI: "location/search/all",
       request_BODY: JSON.stringify(data)
     }
-    return this._HttpCallServieService_.api(postData);
+    return this._HttpcallService_.api(postData);
   }
 
   advancedSearch(data) {
     var postData = {
-      service_NAME: setting.locationservice_NAME,
+      service_NAME: "LOCATION",
       request_TYPE: "POST",
       request_URI: "location/advancedsearch",
       request_BODY: JSON.stringify(data)
     }
-    return this._HttpCallServieService_.api(postData);
+    return this._HttpcallService_.api(postData);
   }
 
   advancedSearchAll(data) {
     var postData = {
-      service_NAME: setting.locationservice_NAME,
+      service_NAME: "LOCATION",
       request_TYPE: "POST",
       request_URI: "location/advancedsearch/all",
       request_BODY: JSON.stringify(data)
     }
-    return this._HttpCallServieService_.api(postData);
+    return this._HttpcallService_.api(postData);
   }
 
   getAllDetail(response) {

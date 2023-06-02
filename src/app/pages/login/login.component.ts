@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-
-import { LoginService } from '../../../../projects/locationlibrary/src/lib/services/login.service';
 import { redirectByHref } from '../../utilities/Shared_Funtions';
-import { setting } from 'projects/locationlibrary/src/lib/setting';
+import { setting } from 'src/setting';
+import { LoginService } from 'projects/locationlibrary/src/lib/services/login.service';
 
 @Component({
   selector: 'app-login',

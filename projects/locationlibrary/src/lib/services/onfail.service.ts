@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { ToastrService } from "ngx-toastr";
-
 import { LoginService } from './login.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class OnFailService {
+export class OnfailService {
 
   constructor(
     private _toaster: ToastrService,

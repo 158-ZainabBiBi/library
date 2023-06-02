@@ -1,7 +1,6 @@
-import { HttpCallServieService } from "./http-call-service.service";
+import { HttpcallService } from './httpcall.service';
 export declare class GetaddressService {
-    private _HttpCallServieService_;
-    constructor(_HttpCallServieService_: HttpCallServieService);
+    private _HttpcallService_;
+    constructor(_HttpcallService_: HttpcallService);
     getByPostcode(postcode: any): import("rxjs").Observable<any>;
 }
-//# sourceMappingURL=getaddress.service.d.ts.map

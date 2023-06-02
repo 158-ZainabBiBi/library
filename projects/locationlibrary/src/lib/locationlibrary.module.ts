@@ -25,10 +25,6 @@ import { LocationsearchfilterComponent } from './components/locationsearchfilter
 import { LocationComponent } from './components/location/location.component';
 import { LocationleveltypeComponent } from './components/locationleveltype/locationleveltype.component';
 
-import { OnFailService } from './services/on-fail.service';
-import { HttpCallServieService } from './services/http-call-service.service';
-import { setting } from './setting';
-
 @NgModule({
 
   declarations: [LocationlibraryComponent, LocationComponent, LocationleveltypeComponent, LocationsearchfilterComponent],

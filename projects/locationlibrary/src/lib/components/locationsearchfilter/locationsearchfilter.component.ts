@@ -1,10 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
-import { OnFailService } from 'projects/locationlibrary/src/lib/services/on-fail.service';
 import { LocationleveltypeService } from '../locationleveltype/locationleveltype.service';
-
 import { LocationComponent } from '../location/location.component';
+import { OnfailService } from '../../services/onfail.service';
 
 @Component({
   selector: 'app-locationsearchfilter',
@@ -40,7 +39,7 @@ export class LocationsearchfilterComponent implements OnInit {
   constructor(
     private locationleveltypeservice: LocationleveltypeService,
     private toastrservice: ToastrService,
-    private onfailservice: OnFailService,
+    private onfailservice: OnfailService,
   ) { }
 
   ngOnInit(): void {
@@ -73,8 +72,8 @@ export class LocationsearchfilterComponent implements OnInit {
       this.locations.forEach((child) => {
         if (child.locationleveltypeID == location.locationleveltype_ID.id)
           child.locationID = location.location_ID;
-          child.locationGetOne(location.location_ID);
-        })
+        child.locationGetOne(location.location_ID);
+      })
     });
   }
 
@@ -104,10 +103,10 @@ export class LocationsearchfilterComponent implements OnInit {
           for (var a = 1; a < response.length; a++) {
             response[a].locationparentID = -1;
             if (response[a].code <= this.locationtypeID)
-            this.locationleveltypes.push(response[a]);
+              this.locationleveltypes.push(response[a]);
           }
 
-//          this.locationleveltypes = response;
+          //          this.locationleveltypes = response;
         }
       }
     }, error => {

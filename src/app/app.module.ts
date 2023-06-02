@@ -17,7 +17,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
-import { HttpErrorInterceptor, RequestOptionsService } from 'locationlibrary';
+import { HttpErrorInterceptor } from 'projects/locationlibrary/src/lib/services/http-error.interceptor';
+import { RequestOptionsService } from 'projects/locationlibrary/src/lib/services/setting.headers';
 
 @NgModule({
   declarations: [AppComponent, LoginComponent],
@@ -33,7 +34,6 @@ import { HttpErrorInterceptor, RequestOptionsService } from 'locationlibrary';
     LoadingBarModule.forRoot(),
     SweetAlert2Module.forRoot(),
     NgxSpinnerModule,
-    ReactiveFormsModule,
     AppRoutingModule,
   ],
   providers: [

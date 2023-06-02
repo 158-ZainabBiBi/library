@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@angular/router'), require('@angular/common/http'), require('ngx-toastr'), require('projects/locationlibrary/src/lib/services/on-fail.service'), require('projects/locationlibrary/src/lib/services/http-call-service.service'), require('@angular/http'), require('rxjs/operators'), require('projects/locationlibrary/src/lib/setting'), require('rxjs')) :
-    typeof define === 'function' && define.amd ? define('locationlibrary', ['exports', '@angular/core', '@angular/common', '@angular/router', '@angular/common/http', 'ngx-toastr', 'projects/locationlibrary/src/lib/services/on-fail.service', 'projects/locationlibrary/src/lib/services/http-call-service.service', '@angular/http', 'rxjs/operators', 'projects/locationlibrary/src/lib/setting', 'rxjs'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.locationlibrary = {}, global.ng.core, global.ng.common, global.ng.router, global.ng.common.http, global.i3, global.onFail_service, global.httpCallService_service, global.ng.http, global.rxjs.operators, global.setting$1, global.rxjs));
-})(this, (function (exports, i0, common, i2, http, i3, onFail_service, httpCallService_service, i1, operators, setting$1, rxjs) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@angular/router'), require('@angular/common/http'), require('ngx-toastr'), require('@angular/http'), require('rxjs/operators'), require('rxjs')) :
+    typeof define === 'function' && define.amd ? define('locationlibrary', ['exports', '@angular/core', '@angular/common', '@angular/router', '@angular/common/http', 'ngx-toastr', '@angular/http', 'rxjs/operators', 'rxjs'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.locationlibrary = {}, global.ng.core, global.ng.common, global.ng.router, global.ng.common.http, global.i3, global.ng.http, global.rxjs.operators, global.rxjs));
+})(this, (function (exports, i0, common, i2, http, i3, i1, operators, rxjs) { 'use strict';
 
     function _interopNamespace(e) {
         if (e && e.__esModule) return e;
@@ -55,22 +55,6 @@
     ];
     LocationlibraryComponent.ctorParameters = function () { return []; };
 
-    var setting = {
-        AppsStorePath: "http://apps.kitaas.edu.pk/#/",
-        LoginAppPath: "http://accounts.kitaas.edu.pk/#/",
-        application_ID: "LocationManagementDev",
-        companyName: 'Khuldunia Inistitute of Technology and Applied Sciences',
-        companyShortName: 'KITAAS',
-        logo: 'https://kitaas.com.pk/kitaasdesign/images/logo.png',
-        logo1white: 'https://kitaas.com.pk/kitaasdesign/images/logo-short.png',
-        loginBanner1: 'https://kitaas.com.pk/kitaasdesign/images/intro-back.jpeg',
-        icon: 'https://kitaas.com.pk/kitaasdesign/images/favicon.ico',
-        service_NAME: 'LOCATION',
-        locationservice_NAME: 'LOCATION',
-        isHash: '/#',
-        redirctPath: '',
-    };
-
     var LoginService = /** @class */ (function () {
         function LoginService(http, _router, _toastr) {
             this.http = http;
@@ -88,7 +72,7 @@
         };
         LoginService.prototype.saveDetail = function (user) {
             if (user) {
-                localStorage.setItem(setting$1.setting.application_ID, JSON.stringify(user));
+                localStorage.setItem("LocationManagement", JSON.stringify(user));
                 return true;
             }
             else {
@@ -100,18 +84,18 @@
             this.authToken = token;
         };
         LoginService.prototype.loaddetail = function () {
-            var getUser = localStorage.getItem(setting$1.setting.application_ID);
+            var getUser = localStorage.getItem("LocationManagement");
             this.user = JSON.parse(getUser);
             return this.user;
         };
         LoginService.prototype.logout = function () {
-            localStorage.removeItem(setting$1.setting.application_ID);
+            localStorage.removeItem("LocationManagement");
             localStorage.removeItem("access_token");
-            window.location.assign(setting$1.setting.LoginAppPath + "logout?application_ID=" + setting$1.setting.application_ID);
+            window.location.assign("http://accounts.kitaas.edu.pk/#/" + "logout?application_ID=" + "LocationManagement");
             return true;
         };
         LoginService.prototype.logged = function () {
-            var getUser = localStorage.getItem(setting$1.setting.application_ID);
+            var getUser = localStorage.getItem("LocationManagement");
             var _application_name_access_token_ = localStorage.getItem("access_token");
             if (getUser && _application_name_access_token_) {
                 return true;
@@ -134,246 +118,246 @@
         { type: i3.ToastrService }
     ]; };
 
-    var HttpCallServieService = /** @class */ (function () {
-        function HttpCallServieService(http, loginService) {
+    var HttpcallService = /** @class */ (function () {
+        function HttpcallService(http, loginService) {
             this.http = http;
             this.loginService = loginService;
             this.BaseUrl = this.loginService.loaddetail().applicationservice_PATH;
             this.AuthUrl = this.loginService.loaddetail().oauthservice_PATH;
         }
-        HttpCallServieService.prototype.api = function (postData) {
+        HttpcallService.prototype.api = function (postData) {
             return this.http.post(this.BaseUrl + "apigateway", postData).pipe(operators.map(function (res) { return res.json(); }));
         };
-        return HttpCallServieService;
+        return HttpcallService;
     }());
-    HttpCallServieService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function HttpCallServieService_Factory() { return new HttpCallServieService(i0__namespace.ɵɵinject(i1__namespace.Http), i0__namespace.ɵɵinject(LoginService)); }, token: HttpCallServieService, providedIn: "root" });
-    HttpCallServieService.decorators = [
+    HttpcallService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function HttpcallService_Factory() { return new HttpcallService(i0__namespace.ɵɵinject(i1__namespace.Http), i0__namespace.ɵɵinject(LoginService)); }, token: HttpcallService, providedIn: "root" });
+    HttpcallService.decorators = [
         { type: i0.Injectable, args: [{
                     providedIn: 'root'
                 },] }
     ];
-    HttpCallServieService.ctorParameters = function () { return [
+    HttpcallService.ctorParameters = function () { return [
         { type: i1.Http },
         { type: LoginService }
     ]; };
 
     var LocationleveltypeService = /** @class */ (function () {
-        function LocationleveltypeService(_HttpCallServieService_) {
-            this._HttpCallServieService_ = _HttpCallServieService_;
+        function LocationleveltypeService(_HttpcallService_) {
+            this._HttpcallService_ = _HttpcallService_;
         }
         LocationleveltypeService.prototype.get = function () {
             var postData = {
-                service_NAME: setting.locationservice_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "GET",
                 request_URI: "lookup",
                 request_BODY: ""
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LocationleveltypeService.prototype.getAll = function () {
             var postData = {
-                service_NAME: setting.locationservice_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "GET",
                 request_URI: "lookup/all",
                 request_BODY: ""
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LocationleveltypeService.prototype.getOne = function (id) {
             var postData = {
-                service_NAME: setting.locationservice_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "GET",
                 request_URI: "lookup/" + id,
                 request_BODY: ""
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LocationleveltypeService.prototype.add = function (data) {
             var postData = {
-                service_NAME: setting.locationservice_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "POST",
                 request_URI: "lookup",
                 request_BODY: JSON.stringify(data)
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LocationleveltypeService.prototype.update = function (data, id) {
             var postData = {
-                service_NAME: setting.locationservice_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "PUT",
                 request_URI: "lookup/" + id,
                 request_BODY: JSON.stringify(data)
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LocationleveltypeService.prototype.delete = function (id) {
             var postData = {
-                service_NAME: setting.locationservice_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "DELETE",
                 request_URI: "lookup/" + id,
                 request_BODY: ""
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LocationleveltypeService.prototype.search = function (data) {
             var postData = {
-                service_NAME: setting.locationservice_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "POST",
                 request_URI: "lookup/search",
                 request_BODY: JSON.stringify(data)
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LocationleveltypeService.prototype.searchAll = function (data) {
             var postData = {
-                service_NAME: setting.locationservice_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "POST",
                 request_URI: "lookup/search/all",
                 request_BODY: JSON.stringify(data)
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LocationleveltypeService.prototype.advancedSearch = function (data) {
             var postData = {
-                service_NAME: setting.locationservice_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "POST",
                 request_URI: "lookup/advancedsearch",
                 request_BODY: JSON.stringify(data)
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LocationleveltypeService.prototype.advancedSearchAll = function (data) {
             var postData = {
-                service_NAME: setting.locationservice_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "POST",
                 request_URI: "lookup/advancedsearch/all",
                 request_BODY: JSON.stringify(data)
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LocationleveltypeService.prototype.lookup = function (data) {
             var postData = {
-                service_NAME: setting.locationservice_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "POST",
                 request_URI: "lookup/entity",
                 request_BODY: JSON.stringify({ entityname: data })
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LocationleveltypeService.prototype.entityList = function () {
             var postData = {
-                service_NAME: setting.locationservice_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "GET",
                 request_URI: "lookup/entitylist",
                 request_BODY: ""
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         return LocationleveltypeService;
     }());
-    LocationleveltypeService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function LocationleveltypeService_Factory() { return new LocationleveltypeService(i0__namespace.ɵɵinject(HttpCallServieService)); }, token: LocationleveltypeService, providedIn: "root" });
+    LocationleveltypeService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function LocationleveltypeService_Factory() { return new LocationleveltypeService(i0__namespace.ɵɵinject(HttpcallService)); }, token: LocationleveltypeService, providedIn: "root" });
     LocationleveltypeService.decorators = [
         { type: i0.Injectable, args: [{
                     providedIn: "root"
                 },] }
     ];
     LocationleveltypeService.ctorParameters = function () { return [
-        { type: httpCallService_service.HttpCallServieService }
+        { type: HttpcallService }
     ]; };
 
     var LocationService = /** @class */ (function () {
-        function LocationService(_HttpCallServieService_) {
-            this._HttpCallServieService_ = _HttpCallServieService_;
+        function LocationService(_HttpcallService_) {
+            this._HttpcallService_ = _HttpcallService_;
         }
         LocationService.prototype.get = function () {
             var postData = {
-                service_NAME: setting.locationservice_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "GET",
                 request_URI: "location",
                 request_BODY: ""
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LocationService.prototype.getAll = function () {
             var postData = {
-                service_NAME: setting.locationservice_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "GET",
                 request_URI: "location/all",
                 request_BODY: ""
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LocationService.prototype.getOne = function (id) {
             var postData = {
-                service_NAME: setting.locationservice_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "GET",
                 request_URI: "location/" + id,
                 request_BODY: ""
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LocationService.prototype.add = function (data) {
             var postData = {
-                service_NAME: setting.locationservice_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "POST",
                 request_URI: "location",
                 request_BODY: JSON.stringify(data)
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LocationService.prototype.update = function (data, id) {
             var postData = {
-                service_NAME: setting.locationservice_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "PUT",
                 request_URI: "location/" + id,
                 request_BODY: JSON.stringify(data)
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LocationService.prototype.delete = function (id) {
             var postData = {
-                service_NAME: setting.locationservice_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "DELETE",
                 request_URI: "location/" + id,
                 request_BODY: ""
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LocationService.prototype.search = function (data) {
             var postData = {
-                service_NAME: setting.locationservice_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "POST",
                 request_URI: "location/search",
                 request_BODY: JSON.stringify(data)
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LocationService.prototype.searchAll = function (data) {
             var postData = {
-                service_NAME: setting.locationservice_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "POST",
                 request_URI: "location/search/all",
                 request_BODY: JSON.stringify(data)
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LocationService.prototype.advancedSearch = function (data) {
             var postData = {
-                service_NAME: setting.locationservice_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "POST",
                 request_URI: "location/advancedsearch",
                 request_BODY: JSON.stringify(data)
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LocationService.prototype.advancedSearchAll = function (data) {
             var postData = {
-                service_NAME: setting.locationservice_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "POST",
                 request_URI: "location/advancedsearch/all",
                 request_BODY: JSON.stringify(data)
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LocationService.prototype.getAllDetail = function (response) {
             for (var a = 0; a < response.length; a++) {
@@ -393,14 +377,85 @@
         };
         return LocationService;
     }());
-    LocationService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function LocationService_Factory() { return new LocationService(i0__namespace.ɵɵinject(HttpCallServieService)); }, token: LocationService, providedIn: "root" });
+    LocationService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function LocationService_Factory() { return new LocationService(i0__namespace.ɵɵinject(HttpcallService)); }, token: LocationService, providedIn: "root" });
     LocationService.decorators = [
         { type: i0.Injectable, args: [{
                     providedIn: "root"
                 },] }
     ];
     LocationService.ctorParameters = function () { return [
-        { type: httpCallService_service.HttpCallServieService }
+        { type: HttpcallService }
+    ]; };
+
+    var OnfailService = /** @class */ (function () {
+        function OnfailService(_toaster, _loginService) {
+            this._toaster = _toaster;
+            this._loginService = _loginService;
+        }
+        OnfailService.prototype.onFail = function (ifFail) {
+            if (ifFail.error == "invalid_token") {
+                this._toaster.warning("Internal session expired. Logged in again ", "Logged out");
+                this._loginService.logout();
+                return;
+            }
+            if (ifFail.status == 0) {
+                this._toaster.error("Connection timed out", "Error");
+                return;
+            }
+            if (ifFail.status == 404) {
+                this._toaster.error("unknown error occured", "Error");
+                return;
+            }
+            if (ifFail.hasOwnProperty("_body")) {
+                var body = JSON.parse(ifFail._body);
+                var fail = {};
+                if (!ifFail) {
+                    this._toaster.error("unknown error occured", "Error");
+                    return;
+                }
+                else if (!ifFail._body) {
+                    this._toaster.error("unknown error occured", "Error");
+                    return;
+                }
+                if (ifFail.hasOwnProperty("_body")) {
+                    if (body.status == 400) {
+                        this._toaster.error("unknown error occured", "Error");
+                        return;
+                    }
+                    else if (body.error == "invalid_token") {
+                        this._toaster.warning("Internal session expired. Logged in again ", "Logged out");
+                        this._loginService.logout();
+                        return;
+                    }
+                    else {
+                        this._toaster.error("unknown error occured", "Error");
+                        return;
+                    }
+                }
+                else {
+                    this._toaster.error("Status: " + ifFail.status + " Error: " + body.error + " Message: " + body.error_description, "Error");
+                }
+            }
+            else if (ifFail.hasOwnProperty("message")) {
+                this._toaster.warning("Message", " " + ifFail.message);
+                return;
+            }
+            else {
+                this._toaster.error("check your internet connection", "Error");
+                return;
+            }
+        };
+        return OnfailService;
+    }());
+    OnfailService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function OnfailService_Factory() { return new OnfailService(i0__namespace.ɵɵinject(i3__namespace.ToastrService), i0__namespace.ɵɵinject(LoginService)); }, token: OnfailService, providedIn: "root" });
+    OnfailService.decorators = [
+        { type: i0.Injectable, args: [{
+                    providedIn: 'root'
+                },] }
+    ];
+    OnfailService.ctorParameters = function () { return [
+        { type: i3.ToastrService },
+        { type: LoginService }
     ]; };
 
     var LocationComponent = /** @class */ (function () {
@@ -677,7 +732,7 @@
         { type: LocationService },
         { type: LocationleveltypeService },
         { type: i3.ToastrService },
-        { type: onFail_service.OnFailService },
+        { type: OnfailService },
         { type: i2.Router }
     ]; };
     LocationComponent.propDecorators = {
@@ -797,7 +852,7 @@
     LocationsearchfilterComponent.ctorParameters = function () { return [
         { type: LocationleveltypeService },
         { type: i3.ToastrService },
-        { type: onFail_service.OnFailService }
+        { type: OnfailService }
     ]; };
     LocationsearchfilterComponent.propDecorators = {
         locations: [{ type: i0.ViewChildren, args: [LocationComponent,] }],
@@ -865,7 +920,7 @@
     LocationleveltypeComponent.ctorParameters = function () { return [
         { type: LocationleveltypeService },
         { type: i3.ToastrService },
-        { type: onFail_service.OnFailService }
+        { type: OnfailService }
     ]; };
     LocationleveltypeComponent.propDecorators = {
         iscompulsory: [{ type: i0.Input }],
@@ -896,8 +951,8 @@
     LocationlibraryModule.ctorParameters = function () { return []; };
 
     var GetaddressService = /** @class */ (function () {
-        function GetaddressService(_HttpCallServieService_) {
-            this._HttpCallServieService_ = _HttpCallServieService_;
+        function GetaddressService(_HttpcallService_) {
+            this._HttpcallService_ = _HttpcallService_;
         }
         GetaddressService.prototype.getByPostcode = function (postcode) {
             var postData = {
@@ -906,18 +961,18 @@
                 request_URI: "find/" + postcode + "?api-key=V4QHzniNakGufrLJgB3ROw29270&expand=true",
                 request_BODY: ""
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         return GetaddressService;
     }());
-    GetaddressService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function GetaddressService_Factory() { return new GetaddressService(i0__namespace.ɵɵinject(HttpCallServieService)); }, token: GetaddressService, providedIn: "root" });
+    GetaddressService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function GetaddressService_Factory() { return new GetaddressService(i0__namespace.ɵɵinject(HttpcallService)); }, token: GetaddressService, providedIn: "root" });
     GetaddressService.decorators = [
         { type: i0.Injectable, args: [{
                     providedIn: 'root'
                 },] }
     ];
     GetaddressService.ctorParameters = function () { return [
-        { type: HttpCallServieService }
+        { type: HttpcallService }
     ]; };
 
     var HttpErrorInterceptor = /** @class */ (function () {
@@ -941,198 +996,127 @@
     }());
 
     var LookupService = /** @class */ (function () {
-        function LookupService(_HttpCallServieService_) {
-            this._HttpCallServieService_ = _HttpCallServieService_;
+        function LookupService(_HttpcallService_) {
+            this._HttpcallService_ = _HttpcallService_;
         }
         LookupService.prototype.get = function () {
             var postData = {
-                service_NAME: setting.service_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "GET",
                 request_URI: "lookup",
                 request_BODY: ""
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LookupService.prototype.getAll = function () {
             var postData = {
-                service_NAME: setting.service_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "GET",
                 request_URI: "lookup/all",
                 request_BODY: ""
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LookupService.prototype.getOne = function (id) {
             var postData = {
-                service_NAME: setting.service_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "GET",
                 request_URI: "lookup/" + id,
                 request_BODY: ""
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LookupService.prototype.add = function (data) {
             var postData = {
-                service_NAME: setting.service_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "POST",
                 request_URI: "lookup",
                 request_BODY: JSON.stringify(data)
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LookupService.prototype.update = function (data, id) {
             var postData = {
-                service_NAME: setting.service_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "PUT",
                 request_URI: "lookup/" + id,
                 request_BODY: JSON.stringify(data)
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LookupService.prototype.delete = function (id) {
             var postData = {
-                service_NAME: setting.service_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "DELETE",
                 request_URI: "lookup/" + id,
                 request_BODY: ""
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LookupService.prototype.search = function (data) {
             var postData = {
-                service_NAME: setting.service_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "POST",
                 request_URI: "lookup/search",
                 request_BODY: JSON.stringify(data)
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LookupService.prototype.searchAll = function (data) {
             var postData = {
-                service_NAME: setting.service_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "POST",
                 request_URI: "lookup/search/all",
                 request_BODY: JSON.stringify(data)
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LookupService.prototype.advancedSearch = function (data) {
             var postData = {
-                service_NAME: setting.service_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "POST",
                 request_URI: "lookup/advancedsearch",
                 request_BODY: JSON.stringify(data)
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LookupService.prototype.advancedSearchAll = function (data) {
             var postData = {
-                service_NAME: setting.service_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "POST",
                 request_URI: "lookup/advancedsearch/all",
                 request_BODY: JSON.stringify(data)
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LookupService.prototype.lookup = function (data) {
             var postData = {
-                service_NAME: setting.service_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "POST",
                 request_URI: "lookup/entity",
                 request_BODY: JSON.stringify({ entityname: data })
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         LookupService.prototype.entityList = function () {
             var postData = {
-                service_NAME: setting.service_NAME,
+                service_NAME: "LOCATION",
                 request_TYPE: "GET",
                 request_URI: "lookup/entitylist",
                 request_BODY: ""
             };
-            return this._HttpCallServieService_.api(postData);
+            return this._HttpcallService_.api(postData);
         };
         return LookupService;
     }());
-    LookupService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function LookupService_Factory() { return new LookupService(i0__namespace.ɵɵinject(HttpCallServieService)); }, token: LookupService, providedIn: "root" });
+    LookupService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function LookupService_Factory() { return new LookupService(i0__namespace.ɵɵinject(HttpcallService)); }, token: LookupService, providedIn: "root" });
     LookupService.decorators = [
         { type: i0.Injectable, args: [{
                     providedIn: "root"
                 },] }
     ];
     LookupService.ctorParameters = function () { return [
-        { type: HttpCallServieService }
-    ]; };
-
-    var OnFailService = /** @class */ (function () {
-        function OnFailService(_toaster, _loginService) {
-            this._toaster = _toaster;
-            this._loginService = _loginService;
-        }
-        OnFailService.prototype.onFail = function (ifFail) {
-            if (ifFail.error == "invalid_token") {
-                this._toaster.warning("Internal session expired. Logged in again ", "Logged out");
-                this._loginService.logout();
-                return;
-            }
-            if (ifFail.status == 0) {
-                this._toaster.error("Connection timed out", "Error");
-                return;
-            }
-            if (ifFail.status == 404) {
-                this._toaster.error("unknown error occured", "Error");
-                return;
-            }
-            if (ifFail.hasOwnProperty("_body")) {
-                var body = JSON.parse(ifFail._body);
-                var fail = {};
-                if (!ifFail) {
-                    this._toaster.error("unknown error occured", "Error");
-                    return;
-                }
-                else if (!ifFail._body) {
-                    this._toaster.error("unknown error occured", "Error");
-                    return;
-                }
-                if (ifFail.hasOwnProperty("_body")) {
-                    if (body.status == 400) {
-                        this._toaster.error("unknown error occured", "Error");
-                        return;
-                    }
-                    else if (body.error == "invalid_token") {
-                        this._toaster.warning("Internal session expired. Logged in again ", "Logged out");
-                        this._loginService.logout();
-                        return;
-                    }
-                    else {
-                        this._toaster.error("unknown error occured", "Error");
-                        return;
-                    }
-                }
-                else {
-                    this._toaster.error("Status: " + ifFail.status + " Error: " + body.error + " Message: " + body.error_description, "Error");
-                }
-            }
-            else if (ifFail.hasOwnProperty("message")) {
-                this._toaster.warning("Message", " " + ifFail.message);
-                return;
-            }
-            else {
-                this._toaster.error("check your internet connection", "Error");
-                return;
-            }
-        };
-        return OnFailService;
-    }());
-    OnFailService.ɵprov = i0__namespace.ɵɵdefineInjectable({ factory: function OnFailService_Factory() { return new OnFailService(i0__namespace.ɵɵinject(i3__namespace.ToastrService), i0__namespace.ɵɵinject(LoginService)); }, token: OnFailService, providedIn: "root" });
-    OnFailService.decorators = [
-        { type: i0.Injectable, args: [{
-                    providedIn: 'root'
-                },] }
-    ];
-    OnFailService.ctorParameters = function () { return [
-        { type: i3.ToastrService },
-        { type: LoginService }
+        { type: HttpcallService }
     ]; };
 
     /*! *****************************************************************************
@@ -1465,16 +1449,16 @@
             var newOptions = _super.prototype.merge.call(this, options);
             if (options.url) {
                 if (options.url.search("/USERLOGIN/") !== -1) {
-                    var token = JSON.parse(localStorage.getItem(setting$1.setting.application_ID)).basic_Token_;
+                    var token = JSON.parse(localStorage.getItem("LocationManagement")).basic_Token_;
                 }
                 else {
-                    var token = JSON.parse(localStorage.getItem(setting$1.setting.application_ID)).access_token;
+                    var token = JSON.parse(localStorage.getItem("LocationManagement")).access_token;
                 }
                 newOptions.headers.set('authorization', "bearer " + token);
                 return newOptions;
             }
             else {
-                newOptions.headers.set('authorization', "bearer " + JSON.parse(localStorage.getItem(setting$1.setting.application_ID)).access_token);
+                newOptions.headers.set('authorization', "bearer " + JSON.parse(localStorage.getItem("LocationManagement")).access_token);
                 return newOptions;
             }
         };
@@ -1519,8 +1503,8 @@
      */
 
     exports.GetaddressService = GetaddressService;
-    exports.HttpCallServieService = HttpCallServieService;
     exports.HttpErrorInterceptor = HttpErrorInterceptor;
+    exports.HttpcallService = HttpcallService;
     exports.LocationComponent = LocationComponent;
     exports.LocationService = LocationService;
     exports.LocationleveltypeComponent = LocationleveltypeComponent;
@@ -1531,7 +1515,7 @@
     exports.LocationsearchfilterComponent = LocationsearchfilterComponent;
     exports.LoginService = LoginService;
     exports.LookupService = LookupService;
-    exports.OnFailService = OnFailService;
+    exports.OnfailService = OnfailService;
     exports.RequestOptionsService = RequestOptionsService;
     exports.SidebarService = SidebarService;
 

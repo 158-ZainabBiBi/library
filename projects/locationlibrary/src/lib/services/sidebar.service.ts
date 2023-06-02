@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http'
 import { map } from "rxjs/operators";
-
 import { LoginService } from './login.service';
 
 @Injectable({

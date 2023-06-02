@@ -1,8 +1,8 @@
 import { OnInit, EventEmitter, QueryList } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { OnFailService } from 'projects/locationlibrary/src/lib/services/on-fail.service';
 import { LocationleveltypeService } from '../locationleveltype/locationleveltype.service';
 import { LocationComponent } from '../location/location.component';
+import { OnfailService } from '../../services/onfail.service';
 export declare class LocationsearchfilterComponent implements OnInit {
     private locationleveltypeservice;
     private toastrservice;
@@ -20,7 +20,7 @@ export declare class LocationsearchfilterComponent implements OnInit {
     search: {
         locationparent_ID: any;
     };
-    constructor(locationleveltypeservice: LocationleveltypeService, toastrservice: ToastrService, onfailservice: OnFailService);
+    constructor(locationleveltypeservice: LocationleveltypeService, toastrservice: ToastrService, onfailservice: OnfailService);
     ngOnInit(): void;
     searchfilter(): void;
     searchfilterID(): any;
@@ -29,4 +29,3 @@ export declare class LocationsearchfilterComponent implements OnInit {
     selectedLocation(location: any): void;
     locationleveltypeGet(): void;
 }
-//# sourceMappingURL=locationsearchfilter.component.d.ts.map
