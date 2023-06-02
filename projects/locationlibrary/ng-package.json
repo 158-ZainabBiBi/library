@@ -2,11 +2,6 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/locationlibrary",
   "lib": {
-    "entryFile": "src/public-api.ts",
-    "umdModuleIds": {
-      "projects/locationlibrary/src/lib/services/on-fail.service": "onFailService",
-      "projects/locationlibrary/src/lib/services/http-call-service.service": "httpCallService",
-      "projects/locationlibrary/src/lib/setting": "setting"
-    }
+    "entryFile": "src/public-api.ts"
   }
 }

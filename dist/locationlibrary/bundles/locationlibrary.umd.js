@@ -1,7 +1,7 @@
 (function (global, factory) {
     typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('@angular/common'), require('@angular/router'), require('@angular/common/http'), require('ngx-toastr'), require('projects/locationlibrary/src/lib/services/on-fail.service'), require('projects/locationlibrary/src/lib/services/http-call-service.service'), require('@angular/http'), require('rxjs/operators'), require('projects/locationlibrary/src/lib/setting'), require('rxjs')) :
     typeof define === 'function' && define.amd ? define('locationlibrary', ['exports', '@angular/core', '@angular/common', '@angular/router', '@angular/common/http', 'ngx-toastr', 'projects/locationlibrary/src/lib/services/on-fail.service', 'projects/locationlibrary/src/lib/services/http-call-service.service', '@angular/http', 'rxjs/operators', 'projects/locationlibrary/src/lib/setting', 'rxjs'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.locationlibrary = {}, global.ng.core, global.ng.common, global.ng.router, global.ng.common.http, global.i3, global.onFailService, global.httpCallService, global.ng.http, global.rxjs.operators, global.setting, global.rxjs));
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.locationlibrary = {}, global.ng.core, global.ng.common, global.ng.router, global.ng.common.http, global.i3, global.onFail_service, global.httpCallService_service, global.ng.http, global.rxjs.operators, global.setting$1, global.rxjs));
 })(this, (function (exports, i0, common, i2, http, i3, onFail_service, httpCallService_service, i1, operators, setting$1, rxjs) { 'use strict';
 
     function _interopNamespace(e) {
