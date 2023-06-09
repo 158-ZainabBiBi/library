@@ -13,5 +13,6 @@ export declare class LookupService {
     advancedSearch(data: any): import("rxjs").Observable<any>;
     advancedSearchAll(data: any): import("rxjs").Observable<any>;
     lookup(data: any): import("rxjs").Observable<any>;
+    lookupAll(data: any): import("rxjs").Observable<any>;
     entityList(): import("rxjs").Observable<any>;
 }

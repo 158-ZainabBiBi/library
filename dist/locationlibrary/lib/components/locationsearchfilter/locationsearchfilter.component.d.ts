@@ -8,6 +8,7 @@ export declare class LocationsearchfilterComponent implements OnInit {
     private toastrservice;
     private onfailservice;
     locations: QueryList<LocationComponent>;
+    baseURL: String;
     view: number;
     disabled: boolean;
     issearchfilter: boolean;

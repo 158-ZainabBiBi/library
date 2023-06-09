@@ -39,6 +39,22 @@ LocationlibraryComponent.decorators = [
 ];
 LocationlibraryComponent.ctorParameters = () => [];
 
+const settings = {
+    AppsStorePath: "http://apps.cwiztech.com/#/",
+    LoginAppPath: "http://accounts.cwiztech.com/#/",
+    application_ID: "LocationManagement",
+    companyName: 'Compuwiz Technologies',
+    companyShortName: 'CWizTech',
+    logo: 'http://cwiztech.com/design/images/logo.png',
+    logo1white: 'http://cwiztech.com/design/images/logo-short.png',
+    loginBanner1: 'http://cwiztech.com/design/images/intro-back.jpeg',
+    icon: 'http://cwiztech.com/design/images/favicon.ico',
+    service_NAME: 'LOCATION',
+    locationservice_NAME: 'LOCATION',
+    isHash: '/#',
+    redirctPath: '',
+};
+
 class LoginService {
     constructor(http, _router, _toastr) {
         this.http = http;
@@ -56,7 +72,7 @@ class LoginService {
     }
     saveDetail(user) {
         if (user) {
-            localStorage.setItem("LocationManagement", JSON.stringify(user));
+            localStorage.setItem(settings.application_ID, JSON.stringify(user));
             return true;
         }
         else {
@@ -68,18 +84,18 @@ class LoginService {
         this.authToken = token;
     }
     loaddetail() {
-        const getUser = localStorage.getItem("LocationManagement");
+        const getUser = localStorage.getItem(settings.application_ID);
         this.user = JSON.parse(getUser);
         return this.user;
     }
     logout() {
-        localStorage.removeItem("LocationManagement");
+        localStorage.removeItem(settings.application_ID);
         localStorage.removeItem("access_token");
-        window.location.assign("http://accounts.kitaas.edu.pk/#/" + "logout?application_ID=" + "LocationManagement");
+        window.location.assign(settings.LoginAppPath + "home/logout?application_ID=" + settings.application_ID);
         return true;
     }
     logged() {
-        const getUser = localStorage.getItem("LocationManagement");
+        const getUser = localStorage.getItem(settings.application_ID);
         const _application_name_access_token_ = localStorage.getItem("access_token");
         if (getUser && _application_name_access_token_) {
             return true;
@@ -105,9 +121,16 @@ class HttpcallService {
     constructor(http, loginService) {
         this.http = http;
         this.loginService = loginService;
-        this.BaseUrl = this.loginService.loaddetail().applicationservice_PATH;
-        this.AuthUrl = this.loginService.loaddetail().oauthservice_PATH;
+        this.BaseUrl = this.loaddetail().applicationservice_PATH;
+        this.AuthUrl = this.loaddetail().oauthservice_PATH;
     }
+    loaddetail() {
+        const getUser = localStorage.getItem(settings.application_ID);
+        this.user = JSON.parse(getUser);
+        return this.user;
+    }
+    // BaseUrl: any = this.loginService.loaddetail().applicationservice_PATH;
+    // AuthUrl: any = this.loginService.loaddetail().oauthservice_PATH;
     api(postData) {
         return this.http.post(this.BaseUrl + "apigateway", postData).pipe(map(res => res.json()));
     }
@@ -822,6 +845,7 @@ LocationsearchfilterComponent.ctorParameters = () => [
 ];
 LocationsearchfilterComponent.propDecorators = {
     locations: [{ type: ViewChildren, args: [LocationComponent,] }],
+    baseURL: [{ type: Input }],
     view: [{ type: Input }],
     disabled: [{ type: Input }],
     issearchfilter: [{ type: Input }],
@@ -959,7 +983,7 @@ class LookupService {
     }
     get() {
         var postData = {
-            service_NAME: "LOCATION",
+            service_NAME: settings.service_NAME,
             request_TYPE: "GET",
             request_URI: "lookup",
             request_BODY: ""
@@ -968,7 +992,7 @@ class LookupService {
     }
     getAll() {
         var postData = {
-            service_NAME: "LOCATION",
+            service_NAME: settings.service_NAME,
             request_TYPE: "GET",
             request_URI: "lookup/all",
             request_BODY: ""
@@ -977,7 +1001,7 @@ class LookupService {
     }
     getOne(id) {
         var postData = {
-            service_NAME: "LOCATION",
+            service_NAME: settings.service_NAME,
             request_TYPE: "GET",
             request_URI: "lookup/" + id,
             request_BODY: ""
@@ -986,7 +1010,7 @@ class LookupService {
     }
     add(data) {
         var postData = {
-            service_NAME: "LOCATION",
+            service_NAME: settings.service_NAME,
             request_TYPE: "POST",
             request_URI: "lookup",
             request_BODY: JSON.stringify(data)
@@ -995,7 +1019,7 @@ class LookupService {
     }
     update(data, id) {
         var postData = {
-            service_NAME: "LOCATION",
+            service_NAME: settings.service_NAME,
             request_TYPE: "PUT",
             request_URI: "lookup/" + id,
             request_BODY: JSON.stringify(data)
@@ -1004,7 +1028,7 @@ class LookupService {
     }
     delete(id) {
         var postData = {
-            service_NAME: "LOCATION",
+            service_NAME: settings.service_NAME,
             request_TYPE: "DELETE",
             request_URI: "lookup/" + id,
             request_BODY: ""
@@ -1013,7 +1037,7 @@ class LookupService {
     }
     search(data) {
         var postData = {
-            service_NAME: "LOCATION",
+            service_NAME: settings.service_NAME,
             request_TYPE: "POST",
             request_URI: "lookup/search",
             request_BODY: JSON.stringify(data)
@@ -1022,7 +1046,7 @@ class LookupService {
     }
     searchAll(data) {
         var postData = {
-            service_NAME: "LOCATION",
+            service_NAME: settings.service_NAME,
             request_TYPE: "POST",
             request_URI: "lookup/search/all",
             request_BODY: JSON.stringify(data)
@@ -1031,7 +1055,7 @@ class LookupService {
     }
     advancedSearch(data) {
         var postData = {
-            service_NAME: "LOCATION",
+            service_NAME: settings.service_NAME,
             request_TYPE: "POST",
             request_URI: "lookup/advancedsearch",
             request_BODY: JSON.stringify(data)
@@ -1040,7 +1064,7 @@ class LookupService {
     }
     advancedSearchAll(data) {
         var postData = {
-            service_NAME: "LOCATION",
+            service_NAME: settings.service_NAME,
             request_TYPE: "POST",
             request_URI: "lookup/advancedsearch/all",
             request_BODY: JSON.stringify(data)
@@ -1049,16 +1073,25 @@ class LookupService {
     }
     lookup(data) {
         var postData = {
-            service_NAME: "LOCATION",
+            service_NAME: settings.service_NAME,
             request_TYPE: "POST",
             request_URI: "lookup/entity",
             request_BODY: JSON.stringify({ entityname: data })
         };
         return this._HttpcallService_.api(postData);
     }
+    lookupAll(data) {
+        var postData = {
+            service_NAME: settings.service_NAME,
+            request_TYPE: "POST",
+            request_URI: "lookup/entity/all",
+            request_BODY: JSON.stringify({ entityname: data })
+        };
+        return this._HttpcallService_.api(postData);
+    }
     entityList() {
         var postData = {
-            service_NAME: "LOCATION",
+            service_NAME: settings.service_NAME,
             request_TYPE: "GET",
             request_URI: "lookup/entitylist",
             request_BODY: ""
@@ -1086,16 +1119,16 @@ class RequestOptionsService extends BaseRequestOptions {
         const newOptions = super.merge(options);
         if (options.url) {
             if (options.url.search("/USERLOGIN/") !== -1) {
-                var token = JSON.parse(localStorage.getItem("LocationManagement")).basic_Token_;
+                var token = JSON.parse(localStorage.getItem(settings.application_ID)).basic_Token_;
             }
             else {
-                var token = JSON.parse(localStorage.getItem("LocationManagement")).access_token;
+                var token = JSON.parse(localStorage.getItem(settings.application_ID)).access_token;
             }
             newOptions.headers.set('authorization', `bearer ${token}`);
             return newOptions;
         }
         else {
-            newOptions.headers.set('authorization', `bearer ${JSON.parse(localStorage.getItem("LocationManagement")).access_token}`);
+            newOptions.headers.set('authorization', `bearer ${JSON.parse(localStorage.getItem(settings.application_ID)).access_token}`);
             return newOptions;
         }
     }

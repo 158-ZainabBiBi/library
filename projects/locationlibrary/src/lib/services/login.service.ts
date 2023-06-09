@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http'
 import { Router } from "@angular/router";
 import { ToastrService } from 'ngx-toastr';
+import { settings } from '../settings';
 
 @Injectable({
   providedIn: "root"
@@ -30,7 +31,7 @@ export class LoginService {
 
   saveDetail(user) {
     if (user) {
-      localStorage.setItem("LocationManagement", JSON.stringify(user));
+      localStorage.setItem(settings.application_ID, JSON.stringify(user));
       return true;
     } else {
       return false;
@@ -43,20 +44,20 @@ export class LoginService {
   }
 
   loaddetail() {
-    const getUser = localStorage.getItem("LocationManagement");
+    const getUser = localStorage.getItem(settings.application_ID);
     this.user = JSON.parse(getUser);
     return this.user;
   }
 
   logout() {
-    localStorage.removeItem("LocationManagement");
+    localStorage.removeItem(settings.application_ID);
     localStorage.removeItem("access_token");
-    window.location.assign("http://accounts.kitaas.edu.pk/#/" + "logout?application_ID=" + "LocationManagement");
+    window.location.assign(settings.LoginAppPath + "home/logout?application_ID=" + settings.application_ID);
     return true;
   }
 
   logged() {
-    const getUser = localStorage.getItem("LocationManagement");
+    const getUser = localStorage.getItem(settings.application_ID);
     const _application_name_access_token_ = localStorage.getItem("access_token");
     if (getUser && _application_name_access_token_) {
       return true;

@@ -14,6 +14,8 @@ export class LocationsearchfilterComponent implements OnInit {
   @ViewChildren(LocationComponent) locations: QueryList<LocationComponent>;
 
   @Input()
+  baseURL: String;
+  @Input()
   view: number = 1;
   @Input()
   disabled: boolean = false;
